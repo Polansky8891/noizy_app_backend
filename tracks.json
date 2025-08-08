@@ -1,0 +1,147 @@
+[
+ {
+    "title": "Dark techno instrumental",
+    "artist": "Nick Panek",
+    "genre": "Techno",
+    "duration": 132,
+    "audioFile": "../assets/audio/techno/dark_techno_instrumental.mp3",
+    "coverFile": "../assets/images/techno/dark_techno_instrumental.png"
+ },
+ {
+    "title": "Melodic Techno",
+    "artist": "Zen Man",
+    "genre": "Techno",
+    "duration": 329,
+    "audioFile": "../assets/audio/techno/melodic_techno.mp3",
+    "coverFile": "../assets/images/techno/melodic_techno.png"
+ },
+ {
+    "title": "Techno House",
+    "artist": "DELO Sound",
+    "genre": "Techno",
+    "duration": 188,
+    "audioFile": "../assets/audio/techno/techno_house.mp3",
+    "coverFile": "../assets/images/techno/techno_house.png"
+ },
+ {
+    "title": "Dark Dub Techno",
+    "artist": "Saturn 3 Music",
+    "genre": "Techno",
+    "duration": 195,
+    "audioFile": "../assets/audio/techno/dark_dub_techno.mp3",
+    "coverFile": "../assets/images/techno/dark_dub_techno.png"
+ },
+ {
+    "title": "Mystic Deep Dub Techno",
+    "artist": "Saturn 3 Music",
+    "genre": "Techno",
+    "duration": 253,
+    "audioFile": "../assets/audio/techno/mystic_deep_dub_techno.mp3",
+    "coverFile": "../assets/images/techno/mystic_deep_dub_techno.png"
+ },
+ {
+    "title": "Techno Tranch",
+    "artist": "Street Ring Music",
+    "genre": "Techno",
+    "duration": 132,
+    "audioFile": "../assets/audio/techno/techno_tranch.mp3",
+    "coverFile": "../assets/images/techno/techno_tranch.png"
+ },
+ {
+    "title": "TAVC City Pop - 1",
+    "artist": "TAVC City Pop",
+    "genre": "Pop",
+    "duration": 192,
+    "audioFile": "../assets/audio/pop/city_pop_1.mp3",
+    "coverFile": "../assets/images/pop/city_pop_1.png"
+ },
+  {
+    "title": "TAVC City Pop - 2",
+    "artist": "TAVC City Pop",
+    "genre": "Pop",
+    "duration": 180,
+    "audioFile": "../assets/audio/pop/city_pop_2.mp3",
+    "coverFile": "../assets/images/pop/city_pop_2.png"
+ },
+  {
+    "title": "TAVC City Pop - 3",
+    "artist": "TAVC City Pop",
+    "genre": "Pop",
+    "duration": 169,
+    "audioFile": "../assets/audio/pop/city_pop_3.mp3",
+    "coverFile": "../assets/images/pop/city_pop_3.png"
+ },
+ {
+    "title": "Event Pop Commercial",
+    "artist": "Hits Lab",
+    "genre": "Pop",
+    "duration": 142,
+    "audioFile": "../assets/audio/pop/pop_commercial.mp3",
+    "coverFile": "../assets/images/pop/pop_commercial.png",
+ },
+ {
+    "title": "Positive Summer Pop",
+    "artist": "Emmraan",
+    "genre": "Pop",
+    "duration": 74,
+    "audioFile": "../assets/audio/pop/positive_summer_pop.mp3",
+    "coverFile": "../assets/images/pop/positive_summer_pop.png"
+ },
+ {
+    "title": "Power Pop",
+    "artist": "Jumping Bunny",
+    "genre": "Pop",
+    "duration": 117,
+    "audioFile": "../assets/audio/pop/power_pop.mp3",
+    "coverFile": "../assets/images/pop/power_pop.png"
+ },
+ {
+    "title": "",
+    "artist": "",
+    "genre": "",
+    "duration": ,
+    "audioFile": "",
+    "coverFile": "",
+ },
+ {
+    "title": "",
+    "artist": "",
+    "genre": "",
+    "duration": ,
+    "audioFile": "",
+    "coverFile": "",
+ },
+ {
+    "title": "",
+    "artist": "",
+    "genre": "",
+    "duration": ,
+    "audioFile": "",
+    "coverFile": "",
+ },
+ {
+    "title": "",
+    "artist": "",
+    "genre": "",
+    "duration": ,
+    "audioFile": "",
+    "coverFile": "",
+ },
+ {
+    "title": "",
+    "artist": "",
+    "genre": "",
+    "duration": ,
+    "audioFile": "",
+    "coverFile": "",
+ },
+ {
+    "title": "",
+    "artist": "",
+    "genre": "",
+    "duration": ,
+    "audioFile": "",
+    "coverFile": "",
+ },
+
+]
