@@ -12,7 +12,7 @@ const TrackSchema = Schema({
     },
     genre: {
         type: String,
-        enum: ['Techno', 'Rock', 'Hip Hop', 'Pop', 'Electro', 'Jazz', 'Blues', 'Classic'],
+        enum: ['Techno', 'Rock', 'Hip-Hop', 'Pop', 'Electro', 'Jazz', 'Blues', 'Classical', 'Dubstep', 'House', 'Reggae'],
         default: 'Other',
     },
     audioUrl: {
