@@ -1,147 +1,1762 @@
 [
- {
-    "title": "Dark techno instrumental",
-    "artist": "Nick Panek",
-    "genre": "Techno",
-    "duration": 132,
-    "audioFile": "../assets/audio/techno/dark_techno_instrumental.mp3",
-    "coverFile": "../assets/images/techno/dark_techno_instrumental.png"
- },
- {
-    "title": "Melodic Techno",
-    "artist": "Zen Man",
-    "genre": "Techno",
-    "duration": 329,
-    "audioFile": "../assets/audio/techno/melodic_techno.mp3",
-    "coverFile": "../assets/images/techno/melodic_techno.png"
- },
- {
-    "title": "Techno House",
-    "artist": "DELO Sound",
-    "genre": "Techno",
-    "duration": 188,
-    "audioFile": "../assets/audio/techno/techno_house.mp3",
-    "coverFile": "../assets/images/techno/techno_house.png"
- },
- {
-    "title": "Dark Dub Techno",
-    "artist": "Saturn 3 Music",
-    "genre": "Techno",
-    "duration": 195,
-    "audioFile": "../assets/audio/techno/dark_dub_techno.mp3",
-    "coverFile": "../assets/images/techno/dark_dub_techno.png"
- },
- {
-    "title": "Mystic Deep Dub Techno",
-    "artist": "Saturn 3 Music",
-    "genre": "Techno",
-    "duration": 253,
-    "audioFile": "../assets/audio/techno/mystic_deep_dub_techno.mp3",
-    "coverFile": "../assets/images/techno/mystic_deep_dub_techno.png"
- },
- {
-    "title": "Techno Tranch",
-    "artist": "Street Ring Music",
-    "genre": "Techno",
-    "duration": 132,
-    "audioFile": "../assets/audio/techno/techno_tranch.mp3",
-    "coverFile": "../assets/images/techno/techno_tranch.png"
- },
- {
+  {
     "title": "TAVC City Pop - 1",
     "artist": "TAVC City Pop",
     "genre": "Pop",
     "duration": 192,
-    "audioFile": "../assets/audio/pop/city_pop_1.mp3",
-    "coverFile": "../assets/images/pop/city_pop_1.png"
- },
+    "audioPath": "../assets/audio/pop/city_pop_1.mp3",
+    "coverPath": "../assets/images/pop/city_pop_1.png"
+  },
   {
     "title": "TAVC City Pop - 2",
     "artist": "TAVC City Pop",
     "genre": "Pop",
     "duration": 180,
-    "audioFile": "../assets/audio/pop/city_pop_2.mp3",
-    "coverFile": "../assets/images/pop/city_pop_2.png"
- },
+    "audioPath": "../assets/audio/pop/city_pop_2.mp3",
+    "coverPath": "../assets/images/pop/city_pop_2.png"
+  },
   {
     "title": "TAVC City Pop - 3",
     "artist": "TAVC City Pop",
     "genre": "Pop",
     "duration": 169,
-    "audioFile": "../assets/audio/pop/city_pop_3.mp3",
-    "coverFile": "../assets/images/pop/city_pop_3.png"
- },
- {
-    "title": "Event Pop Commercial",
+    "audioPath": "../assets/audio/pop/city_pop_3.mp3",
+    "coverPath": "../assets/images/pop/city_pop_3.png"
+  },
+  {
+    "title": "Pop Commercial",
     "artist": "Hits Lab",
     "genre": "Pop",
     "duration": 142,
-    "audioFile": "../assets/audio/pop/pop_commercial.mp3",
-    "coverFile": "../assets/images/pop/pop_commercial.png",
- },
- {
+    "audioPath": "../assets/audio/pop/pop_commercial.mp3",
+    "coverPath": "../assets/images/pop/pop_commercial.png"
+  },
+  {
     "title": "Positive Summer Pop",
-    "artist": "Emmraan",
+    "artist": "TAVC City Pop",
     "genre": "Pop",
     "duration": 74,
-    "audioFile": "../assets/audio/pop/positive_summer_pop.mp3",
-    "coverFile": "../assets/images/pop/positive_summer_pop.png"
- },
- {
+    "audioPath": "../assets/audio/pop/positive_summer_pop.mp3",
+    "coverPath": "../assets/images/pop/positive_summer_pop.png"
+  },
+  {
     "title": "Power Pop",
     "artist": "Jumping Bunny",
     "genre": "Pop",
     "duration": 117,
-    "audioFile": "../assets/audio/pop/power_pop.mp3",
-    "coverFile": "../assets/images/pop/power_pop.png"
- },
- {
-    "title": "",
-    "artist": "",
-    "genre": "",
-    "duration": ,
-    "audioFile": "",
-    "coverFile": "",
- },
- {
-    "title": "",
-    "artist": "",
-    "genre": "",
-    "duration": ,
-    "audioFile": "",
-    "coverFile": "",
- },
- {
-    "title": "",
-    "artist": "",
-    "genre": "",
-    "duration": ,
-    "audioFile": "",
-    "coverFile": "",
- },
- {
-    "title": "",
-    "artist": "",
-    "genre": "",
-    "duration": ,
-    "audioFile": "",
-    "coverFile": "",
- },
- {
-    "title": "",
-    "artist": "",
-    "genre": "",
-    "duration": ,
-    "audioFile": "",
-    "coverFile": "",
- },
- {
-    "title": "",
-    "artist": "",
-    "genre": "",
-    "duration": ,
-    "audioFile": "",
-    "coverFile": "",
- },
-
+    "audioPath": "../assets/audio/pop/power_pop.mp3",
+    "coverPath": "../assets/images/pop/power_pop.png"
+  },
+  {
+    "title": "Teen Pop",
+    "artist": "Jumping Bunny",
+    "genre": "Pop",
+    "duration": 138,
+    "audioPath": "../assets/audio/pop/teen_pop.mp3",
+    "coverPath": "../assets/images/pop/teen_pop.png"
+  },
+  {
+    "title": "Chilled Out Pop",
+    "artist": "Music for creators",
+    "genre": "Pop",
+    "duration": 150,
+    "audioPath": "../assets/audio/pop/chilled_out_pop.mp3",
+    "coverPath": "../assets/images/pop/chilled_out_pop.png"
+  },
+  {
+    "title": "TAVC City Pop - 4",
+    "artist": "TAVC City Pop",
+    "genre": "Pop",
+    "duration": 273,
+    "audioPath": "../assets/audio/pop/city_pop_4.mp3",
+    "coverPath": "../assets/images/pop/city_pop_4.png"
+  },
+  {
+    "title": "TAVC City Pop - 5",
+    "artist": "TAVC City Pop",
+    "genre": "Pop",
+    "duration": 180,
+    "audioPath": "../assets/audio/pop/city_pop_5.mp3",
+    "coverPath": "../assets/images/pop/city_pop_5.png"
+  },
+  {
+    "title": "TAVC City Pop - 6",
+    "artist": "TAVC City Pop",
+    "genre": "Pop",
+    "duration": 241,
+    "audioPath": "../assets/audio/pop/city_pop_6.mp3",
+    "coverPath": "../assets/images/pop/city_pop_6.png"
+  },
+  {
+    "title": "Fun Summer Pop",
+    "artist": "Ikoliks",
+    "genre": "Pop",
+    "duration": 156,
+    "audioPath": "../assets/audio/pop/fun_summer_pop.mp3",
+    "coverPath": "../assets/images/pop/fun_summer_pop.png"
+  },
+  {
+    "title": "Happy Funky Pop",
+    "artist": "Emmraan",
+    "genre": "Pop",
+    "duration": 124,
+    "audioPath": "../assets/audio/pop/happy_funky_pop.mp3",
+    "coverPath": "../assets/images/pop/happy_funky_pop.png"
+  },
+  {
+    "title": "Happy Pride Pop",
+    "artist": "In Plus Music",
+    "genre": "Pop",
+    "duration": 100,
+    "audioPath": "../assets/audio/pop/happy_pride_pop.mp3",
+    "coverPath": "../assets/images/pop/happy_pride_pop.png"
+  },
+  {
+    "title": "Indie Pop",
+    "artist": "Mad Stock",
+    "genre": "Pop",
+    "duration": 183,
+    "audioPath": "../assets/audio/pop/indie_pop.mp3",
+    "coverPath": "../assets/images/pop/indie_pop.png"
+  },
+  {
+    "title": "Pop Dance",
+    "artist": "Emmraan",
+    "genre": "Pop",
+    "duration": 142,
+    "audioPath": "../assets/audio/pop/pop_dance.mp3",
+    "coverPath": "../assets/images/pop/pop_dance.png"
+  },
+  {
+    "title": "Pop Rock",
+    "artist": "Jumping Bunny",
+    "genre": "Pop",
+    "duration": 73,
+    "audioPath": "../assets/audio/pop/pop_rock.mp3",
+    "coverPath": "../assets/images/pop/pop_rock.png"
+  },
+  {
+    "title": "Romantic Pop",
+    "artist": "Wendrali",
+    "genre": "Pop",
+    "duration": 131,
+    "audioPath": "../assets/audio/pop/romantic_pop.mp3",
+    "coverPath": "../assets/images/pop/romantic_pop.png"
+  },
+  {
+    "title": "Upbeat Pop",
+    "artist": "Alex Guz",
+    "genre": "Pop",
+    "duration": 155,
+    "audioPath": "../assets/audio/pop/upbeat_pop.mp3",
+    "coverPath": "../assets/images/pop/upbeat_pop.png"
+  },
+  {
+    "title": "Uplifting Pop",
+    "artist": "Turtle Beats",
+    "genre": "Pop",
+    "duration": 180,
+    "audioPath": "../assets/audio/pop/uplifting_pop.mp3",
+    "coverPath": "../assets/images/pop/uplifting_pop.png"
+  },
+  {
+    "title": "Dark techno instrumental",
+    "artist": "Nick Panek",
+    "genre": "Techno",
+    "duration": 132,
+    "audioPath": "../assets/audio/techno/dark_techno_instrumental.mp3",
+    "coverPath": "../assets/images/techno/dark_techno_instrumental.png"
+  },
+  {
+    "title": "Melodic Techno",
+    "artist": "Zen Man",
+    "genre": "Techno",
+    "duration": 329,
+    "audioPath": "../assets/audio/techno/melodic_techno.mp3",
+    "coverPath": "../assets/images/techno/melodic_techno.png"
+  },
+  {
+    "title": "Techno House",
+    "artist": "DELO Sound",
+    "genre": "Techno",
+    "duration": 188,
+    "audioPath": "../assets/audio/techno/techno_house.mp3",
+    "coverPath": "../assets/images/techno/techno_house.png"
+  },
+  {
+    "title": "Dark Dub Techno",
+    "artist": "Saturn 3 Music",
+    "genre": "Techno",
+    "duration": 195,
+    "audioPath": "../assets/audio/techno/dark_dub_techno.mp3",
+    "coverPath": "../assets/images/techno/dark_dub_techno.png"
+  },
+  {
+    "title": "Mystic Deep Dub Techno",
+    "artist": "Saturn 3 Music",
+    "genre": "Techno",
+    "duration": 253,
+    "audioPath": "../assets/audio/techno/mystic_deep_dub_techno.mp3",
+    "coverPath": "../assets/images/techno/mystic_deep_dub_techno.png"
+  },
+  {
+    "title": "Techno Tranch",
+    "artist": "Street Ring Music",
+    "genre": "Techno",
+    "duration": 132,
+    "audioPath": "../assets/audio/techno/techno_tranch.mp3",
+    "coverPath": "../assets/images/techno/techno_tranch.png"
+  },
+  {
+    "title": "Ambient Techno",
+    "artist": "Catch 22 Music",
+    "genre": "Techno",
+    "duration": 207,
+    "audioPath": "../assets/audio/techno/ambient_techno.mp3",
+    "coverPath": "../assets/images/techno/ambient_techno.png"
+  },
+  {
+    "title": "Bass Fire",
+    "artist": "Freccero",
+    "genre": "Techno",
+    "duration": 262,
+    "audioPath": "../assets/audio/techno/bass_fire.mp3",
+    "coverPath": "../assets/images/techno/bass_fire.png"
+  },
+  {
+    "title": "Cautious Techno",
+    "artist": "Catch 22 Music",
+    "genre": "Techno",
+    "duration": 209,
+    "audioPath": "../assets/audio/techno/cautious_techno.mp3",
+    "coverPath": "../assets/images/techno/cautious_techno.png"
+  },
+  {
+    "title": "Dopetronic Aliens",
+    "artist": "Dopetronic",
+    "genre": "Techno",
+    "duration": 424,
+    "audioPath": "../assets/audio/techno/dopetronic_aliens.mp3",
+    "coverPath": "../assets/images/techno/dopetronic_aliens.png"
+  },
+  {
+    "title": "Downbeat Techno",
+    "artist": "Catch 22 Music",
+    "genre": "Techno",
+    "duration": 303,
+    "audioPath": "../assets/audio/techno/downbeat_techno.mp3",
+    "coverPath": "../assets/images/techno/downbeat_techno.png"
+  },
+  {
+    "title": "Energetic Techno",
+    "artist": "Street Ring Music",
+    "genre": "Techno",
+    "duration": 131,
+    "audioPath": "../assets/audio/techno/energetic_techno.mp3",
+    "coverPath": "../assets/images/techno/energetic_techno.png"
+  },
+  {
+    "title": "Futurama Techno",
+    "artist": "Dwkeka",
+    "genre": "Techno",
+    "duration": 238,
+    "audioPath": "../assets/audio/techno/futurama_techno.mp3",
+    "coverPath": "../assets/images/techno/futurama_techno.png"
+  },
+  {
+    "title": "Inspired Dark Melody",
+    "artist": "Saturn 3 Music",
+    "genre": "Techno",
+    "duration": 318,
+    "audioPath": "../assets/audio/techno/inspired_dark_melody.mp3",
+    "coverPath": "../assets/images/techno/inspired_dark_melody.png"
+  },
+  {
+    "title": "Modern Techno",
+    "artist": "Nick Panek",
+    "genre": "Techno",
+    "duration": 240,
+    "audioPath": "../assets/audio/techno/modern_techno.mp3",
+    "coverPath": "../assets/images/techno/modern_techno.png"
+  },
+  {
+    "title": "Powerful Techno",
+    "artist": "Catch 22 Music",
+    "genre": "Techno",
+    "duration": 303,
+    "audioPath": "../assets/audio/techno/powerful_techno.mp3",
+    "coverPath": "../assets/images/techno/powerful_techno.png"
+  },
+  {
+    "title": "Stations Techno",
+    "artist": "Dance Musike",
+    "genre": "Techno",
+    "duration": 332,
+    "audioPath": "../assets/audio/techno/stations_techno.mp3",
+    "coverPath": "../assets/images/techno/stations_techno.png"
+  },
+  {
+    "title": "Techno Cyberpunk",
+    "artist": "Tunetank",
+    "genre": "Techno",
+    "duration": 118,
+    "audioPath": "../assets/audio/techno/techno_cyberpunk.mp3",
+    "coverPath": "../assets/images/techno/techno_cyberpunk.png"
+  },
+  {
+    "title": "Techno Euphoric",
+    "artist": "Maison Brava",
+    "genre": "Techno",
+    "duration": 318,
+    "audioPath": "../assets/audio/techno/techno_euphoric.mp3",
+    "coverPath": "../assets/images/techno/techno_euphoric.png"
+  },
+  {
+    "title": "Techno Minimal",
+    "artist": "Free Music Pro",
+    "genre": "Techno",
+    "duration": 209,
+    "audioPath": "../assets/audio/techno/techno_minimal.mp3",
+    "coverPath": "../assets/images/techno/techno_minimal.png"
+  },
+  {
+    "title": "Energetic Techno",
+    "artist": "Catch 22 Music",
+    "genre": "Techno",
+    "duration": 308,
+    "audioPath": "../assets/audio/techno/warehouse_techno.mp3",
+    "coverPath": "../assets/images/techno/warehouse_techno.png"
+  },
+  {
+    "title": "Electro Summer Positive Party",
+    "artist": "Alex Kizenkov",
+    "genre": "Electro",
+    "duration": 101,
+    "audioPath": "../assets/audio/electro/electro_summer_positive_party.mp3",
+    "coverPath": "../assets/images/electro/electro_summer_positive_party.png"
+  },
+  {
+    "title": "Electro Magna",
+    "artist": "Robloxeur",
+    "genre": "Electro",
+    "duration": 111,
+    "audioPath": "../assets/audio/electro/electro_magna.mp3",
+    "coverPath": "../assets/images/electro/electro_magna.png"
+  },
+  {
+    "title": "Intense Electro Trailer Music",
+    "artist": "Jk Studios",
+    "genre": "Electro",
+    "duration": 126,
+    "audioPath": "../assets/audio/electro/intense_electro_trailer_music.mp3",
+    "coverPath": "../assets/images/electro/intense_electro_trailer_music.png"
+  },
+  {
+    "title": "Trailer Sport Stylish",
+    "artist": "Anton Vlasov",
+    "genre": "Electro",
+    "duration": 181,
+    "audioPath": "../assets/audio/electro/trailer_sport_stylish.mp3",
+    "coverPath": "../assets/images/electro/trailer_sport_stylish.png"
+  },
+  {
+    "title": "Cheerful Electro Swing",
+    "artist": "Open Music For Videos",
+    "genre": "Electro",
+    "duration": 103,
+    "audioPath": "../assets/audio/electro/cheerful_electric_music.mp3",
+    "coverPath": "../assets/images/electro/cheerful_electric_music.png"
+  },
+  {
+    "title": "Electro Hip Hop Beat",
+    "artist": "Van Wiese",
+    "genre": "Electro",
+    "duration": 142,
+    "audioPath": "../assets/audio/electro/electro_hip_hop_beat.mp3",
+    "coverPath": "../assets/images/electro/electro_hip_hop_beat.png"
+  },
+  {
+    "title": "Barcelona Nights",
+    "artist": "Too Likes",
+    "genre": "Electro",
+    "duration": 123,
+    "audioPath": "../assets/audio/electro/barcelona_nights.mp3",
+    "coverPath": "../assets/images/electro/barcelona_nights.png"
+  },
+  {
+    "title": "Summer Chill",
+    "artist": "Yellow Bird Beats",
+    "genre": "Electro",
+    "duration": 149,
+    "audioPath": "../assets/audio/electro/summer_chill.mp3",
+    "coverPath": "../assets/images/electro/summer_chill.png"
+  },
+  {
+    "title": "I will take you to the moon",
+    "artist": "Junior Soundays",
+    "genre": "Electro",
+    "duration": 188,
+    "audioPath": "../assets/audio/electro/i_will_take_you_to_the_moon.mp3",
+    "coverPath": "../assets/images/electro/i_will_take_you_to_the_moon.png"
+  },
+  {
+    "title": "Driving electro swing",
+    "artist": "Open Music For Videos",
+    "genre": "Electro",
+    "duration": 188,
+    "audioPath": "../assets/audio/electro/driving_electro_swing.mp3",
+    "coverPath": "../assets/images/electro/driving_electro_swing.png"
+  },
+  {
+    "title": "Dancy electro swing",
+    "artist": "Open Music For Videos",
+    "genre": "Electro",
+    "duration": 106,
+    "audioPath": "../assets/audio/electro/dancy_electro_swing.mp3",
+    "coverPath": "../assets/images/electro/dancy_electro_swing.png"
+  },
+  {
+    "title": "Cyberpsycosis",
+    "artist": "Junior Soundays",
+    "genre": "Electro",
+    "duration": 101,
+    "audioPath": "../assets/audio/electro/cyberpsycosis.mp3",
+    "coverPath": "../assets/images/electro/cyberpsycosis.png"
+  },
+  {
+    "title": "Melodic symbiose",
+    "artist": "Rizzlas",
+    "genre": "Electro",
+    "duration": 318,
+    "audioPath": "../assets/audio/electro/melodic_symbiose.mp3",
+    "coverPath": "../assets/images/electro/melodic_symbiose.png"
+  },
+  {
+    "title": "Electro dutch",
+    "artist": "Jumping Bunny",
+    "genre": "Electro",
+    "duration": 184,
+    "audioPath": "../assets/audio/electro/electro_dutch.mp3",
+    "coverPath": "../assets/images/electro/electro_dutch.png"
+  },
+  {
+    "title": "Electro syth",
+    "artist": "Gabriele Romanoy",
+    "genre": "Electro",
+    "duration": 82,
+    "audioPath": "../assets/audio/electro/electro_syth.mp3",
+    "coverPath": "../assets/images/electro/electro_syth.png"
+  },
+  {
+    "title": "Supernatural",
+    "artist": "Freccero",
+    "genre": "Electro",
+    "duration": 146,
+    "audioPath": "../assets/audio/electro/supernatural.mp3",
+    "coverPath": "../assets/images/electro/supernatural.png"
+  },
+  {
+    "title": "Dynamic sport electro",
+    "artist": "Penguin Music",
+    "genre": "Electro",
+    "duration": 74,
+    "audioPath": "../assets/audio/electro/dynamic_sport_electro.mp3",
+    "coverPath": "../assets/images/electro/dynamic_sport_electro.png"
+  },
+  {
+    "title": "Electro assembly",
+    "artist": "Robloxeur",
+    "genre": "Electro",
+    "duration": 261,
+    "audioPath": "../assets/audio/electro/electro_assembly.mp3",
+    "coverPath": "../assets/images/electro/electro_assembly.png"
+  },
+  {
+    "title": "Energy gaming",
+    "artist": "Astronaut 12",
+    "genre": "Electro",
+    "duration": 184,
+    "audioPath": "../assets/audio/electro/energy_gaming.mp3",
+    "coverPath": "../assets/images/electro/energy_gaming.png"
+  },
+  {
+    "title": "Fast rock",
+    "artist": "Dmitry Taras",
+    "genre": "Rock",
+    "duration": 146,
+    "audioPath": "../assets/audio/rock/fast_rock.mp3",
+    "coverPath": "../assets/images/rock/fast_rock.png"
+  },
+  {
+    "title": "Energetic rock",
+    "artist": "Dmitry Taras",
+    "genre": "Rock",
+    "duration": 93,
+    "audioPath": "../assets/audio/rock/energetic_rock.mp3",
+    "coverPath": "../assets/images/rock/energetic_rock.png"
+  },
+  {
+    "title": "Motivation rock",
+    "artist": "DELO Sound",
+    "genre": "Rock",
+    "duration": 137,
+    "audioPath": "../assets/audio/rock/motivation_rock.mp3",
+    "coverPath": "../assets/images/rock/motivation_rock.png"
+  },
+  {
+    "title": "Sports rock music",
+    "artist": "In Plus Music",
+    "genre": "Rock",
+    "duration": 141,
+    "audioPath": "../assets/audio/rock/sports_rock_music.mp3",
+    "coverPath": "../assets/images/rock/sports_rock_music.png"
+  },
+  {
+    "title": "Stomping rock",
+    "artist": "Alex Grohl",
+    "genre": "Rock",
+    "duration": 119,
+    "audioPath": "../assets/audio/rock/stomping_rock.mp3",
+    "coverPath": "../assets/images/rock/stomping_rock.png"
+  },
+  {
+    "title": "Happy rock",
+    "artist": "Top flow",
+    "genre": "Rock",
+    "duration": 82,
+    "audioPath": "../assets/audio/rock/happy_rock.mp3",
+    "coverPath": "../assets/images/rock/happy_rock.png"
+  },
+  {
+    "title": "Cool rock",
+    "artist": "Emmraan",
+    "genre": "Rock",
+    "duration": 100,
+    "audioPath": "../assets/audio/rock/cool_rock.mp3",
+    "coverPath": "../assets/images/rock/cool_rock.png"
+  },
+  {
+    "title": "Action rock",
+    "artist": "Ikoliks",
+    "genre": "Rock",
+    "duration": 136,
+    "audioPath": "../assets/audio/rock/action_rock.mp3",
+    "coverPath": "../assets/images/rock/action_rock.png"
+  },
+  {
+    "title": "Upbeat rock",
+    "artist": "Top flow",
+    "genre": "Rock",
+    "duration": 112,
+    "audioPath": "../assets/audio/rock/upbeat_rock.mp3",
+    "coverPath": "../assets/images/rock/upbeat_rock.png"
+  },
+  {
+    "title": "Rock trailer",
+    "artist": "Dmitry Taras",
+    "genre": "Rock",
+    "duration": 130,
+    "audioPath": "../assets/audio/rock/rock_trailer.mp3",
+    "coverPath": "../assets/images/rock/rock_trailer.png"
+  },
+  {
+    "title": "Epic rock",
+    "artist": "Soulful jam tracks",
+    "genre": "Rock",
+    "duration": 131,
+    "audioPath": "../assets/audio/rock/epic_rock.mp3",
+    "coverPath": "../assets/images/rock/epic_rock.png"
+  },
+  {
+    "title": "Intense hard rock",
+    "artist": "All world music",
+    "genre": "Rock",
+    "duration": 98,
+    "audioPath": "../assets/audio/rock/intense_hard_rock.mp3",
+    "coverPath": "../assets/images/rock/intense_hard_rock.png"
+  },
+  {
+    "title": "Slow cool rock",
+    "artist": "Dmitry Taras",
+    "genre": "Rock",
+    "duration": 129,
+    "audioPath": "../assets/audio/rock/slow_cool_rock.mp3",
+    "coverPath": "../assets/images/rock/slow_cool_rock.png"
+  },
+  {
+    "title": "Crazy rock",
+    "artist": "Emmraan",
+    "genre": "Rock",
+    "duration": 90,
+    "audioPath": "../assets/audio/rock/crazy_rock.mp3",
+    "coverPath": "../assets/images/rock/crazy_rock.png"
+  },
+  {
+    "title": "Rock again",
+    "artist": "Trtasfiq",
+    "genre": "Rock",
+    "duration": 184,
+    "audioPath": "../assets/audio/rock/rock_again.mp3",
+    "coverPath": "../assets/images/rock/rock_again.png"
+  },
+  {
+    "title": "Vintage rock",
+    "artist": "Ikoliks",
+    "genre": "Rock",
+    "duration": 145,
+    "audioPath": "../assets/audio/rock/vintage_rock.mp3",
+    "coverPath": "../assets/images/rock/vintage_rock.png"
+  },
+  {
+    "title": "Garage rock",
+    "artist": "Emmraan",
+    "genre": "Rock",
+    "duration": 81,
+    "audioPath": "../assets/audio/rock/garage_rock.mp3",
+    "coverPath": "../assets/images/rock/garage_rock.png"
+  },
+  {
+    "title": "Anime rock",
+    "artist": "Jumping Bunny",
+    "genre": "Rock",
+    "duration": 140,
+    "audioPath": "../assets/audio/rock/anime_rock.mp3",
+    "coverPath": "../assets/images/rock/anime_rock.png"
+  },
+  {
+    "title": "Blues rock",
+    "artist": "Emmraan",
+    "genre": "Rock",
+    "duration": 72,
+    "audioPath": "../assets/audio/rock/blues_rock.mp3",
+    "coverPath": "../assets/images/rock/blues_rock.png"
+  },
+  {
+    "title": "Funny wah rock",
+    "artist": "Emmraan",
+    "genre": "Rock",
+    "duration": 94,
+    "audioPath": "../assets/audio/rock/funny_wah_rock.mp3",
+    "coverPath": "../assets/images/rock/funny_wah_rock.png"
+  },
+  {
+    "title": "American blues",
+    "artist": "Soulful jam tracks",
+    "genre": "Blues",
+    "duration": 111,
+    "audioPath": "../assets/audio/blues/american_blues.mp3",
+    "coverPath": "../assets/images/blues/american_blues.png"
+  },
+  {
+    "title": "Rainy day blues",
+    "artist": "u_as2rhjglks",
+    "genre": "Blues",
+    "duration": 147,
+    "audioPath": "../assets/audio/blues/rainy_day_blues.mp3",
+    "coverPath": "../assets/images/blues/rainy_day_blues.png"
+  },
+  {
+    "title": "Kansas blues",
+    "artist": "Nick Panek",
+    "genre": "Blues",
+    "duration": 148,
+    "audioPath": "../assets/audio/blues/kansas_blues.mp3",
+    "coverPath": "../assets/images/blues/kansas_blues.png"
+  },
+  {
+    "title": "Romantic blues",
+    "artist": "Jean Paul V",
+    "genre": "Blues",
+    "duration": 227,
+    "audioPath": "../assets/audio/blues/romantic_blues.mp3",
+    "coverPath": "../assets/images/blues/romantic_blues.png"
+  },
+  {
+    "title": "Majestic blues",
+    "artist": "Desicomix07",
+    "genre": "Blues",
+    "duration": 227,
+    "audioPath": "../assets/audio/blues/majestic_blues.mp3",
+    "coverPath": "../assets/images/blues/majestic_blues.png"
+  },
+  {
+    "title": "Heartbreaker blues",
+    "artist": "Julius H",
+    "genre": "Blues",
+    "duration": 105,
+    "audioPath": "../assets/audio/blues/heartbreaker_blues.mp3",
+    "coverPath": "../assets/images/blues/heartbreaker_blues.png"
+  },
+  {
+    "title": "Slow blues",
+    "artist": "Oleksii Kalyna",
+    "genre": "Blues",
+    "duration": 120,
+    "audioPath": "../assets/audio/blues/slow_blues.mp3",
+    "coverPath": "../assets/images/blues/slow_blues.png"
+  },
+  {
+    "title": "Manic blues",
+    "artist": "Nick Panek",
+    "genre": "Blues",
+    "duration": 171,
+    "audioPath": "../assets/audio/blues/manic_blues.mp3",
+    "coverPath": "../assets/images/blues/manic_blues.png"
+  },
+  {
+    "title": "Piano blues",
+    "artist": "Life saturation",
+    "genre": "Blues",
+    "duration": 172,
+    "audioPath": "../assets/audio/blues/piano_blues.mp3",
+    "coverPath": "../assets/images/blues/piano_blues.png"
+  },
+  {
+    "title": "Acoustic blues",
+    "artist": "Soulful jam tracks",
+    "genre": "Blues",
+    "duration": 127,
+    "audioPath": "../assets/audio/blues/acoustic_blues.mp3",
+    "coverPath": "../assets/images/blues/acoustic_blues.png"
+  },
+  {
+    "title": "Petroleum blues",
+    "artist": "Nick Panek",
+    "genre": "Blues",
+    "duration": 215,
+    "audioPath": "../assets/audio/blues/petroleum_blues.mp3",
+    "coverPath": "../assets/images/blues/petroleum_blues.png"
+  },
+  {
+    "title": "Texas blues",
+    "artist": "Captain sleepy",
+    "genre": "Blues",
+    "duration": 240,
+    "audioPath": "../assets/audio/blues/texas_blues.mp3",
+    "coverPath": "../assets/images/blues/texas_blues.png"
+  },
+  {
+    "title": "Midnight blues",
+    "artist": "Shabbir Shawun",
+    "genre": "Blues",
+    "duration": 95,
+    "audioPath": "../assets/audio/blues/midnight_blues.mp3",
+    "coverPath": "../assets/images/blues/midnight_blues.png"
+  },
+  {
+    "title": "Summer blues",
+    "artist": "Jean Paul V",
+    "genre": "Blues",
+    "duration": 110,
+    "audioPath": "../assets/audio/blues/summer_blues.mp3",
+    "coverPath": "../assets/images/blues/summer_blues.png"
+  },
+  {
+    "title": "Lonely blues",
+    "artist": "Kaazoom",
+    "genre": "Blues",
+    "duration": 336,
+    "audioPath": "../assets/audio/blues/lonely_blues.mp3",
+    "coverPath": "../assets/images/blues/lonely_blues.png"
+  },
+  {
+    "title": "Blues bar",
+    "artist": "Nick Panek",
+    "genre": "Blues",
+    "duration": 123,
+    "audioPath": "../assets/audio/blues/blues_bar.mp3",
+    "coverPath": "../assets/images/blues/blues_bar.png"
+  },
+  {
+    "title": "Lazy blues",
+    "artist": "Shiden beats music",
+    "genre": "Blues",
+    "duration": 55,
+    "audioPath": "../assets/audio/blues/lazy_blues.mp3",
+    "coverPath": "../assets/images/blues/lazy_blues.png"
+  },
+  {
+    "title": "Gritty blues",
+    "artist": "Aurea amanecer",
+    "genre": "Blues",
+    "duration": 185,
+    "audioPath": "../assets/audio/blues/gritty_blues.mp3",
+    "coverPath": "../assets/images/blues/gritty_blues.png"
+  },
+  {
+    "title": "Psychedelic blues",
+    "artist": "Nick Panek",
+    "genre": "Blues",
+    "duration": 232,
+    "audioPath": "../assets/audio/blues/psychedelic_blues.mp3",
+    "coverPath": "../assets/images/blues/psychedelic_blues.png"
+  },
+  {
+    "title": "Everyday blues",
+    "artist": "Fresh morning",
+    "genre": "Blues",
+    "duration": 89,
+    "audioPath": "../assets/audio/blues/everyday_blues.mp3",
+    "coverPath": "../assets/images/blues/everyday_blues.png"
+  },
+  {
+    "title": "New Orleans jazz",
+    "artist": "Paolo Argento",
+    "genre": "Jazz",
+    "duration": 120,
+    "audioPath": "../assets/audio/jazz/new_orleans_jazz.mp3",
+    "coverPath": "../assets/images/jazz/new_orleans_jazz.png"
+  },
+  {
+    "title": "Background jazz",
+    "artist": "Onoychenko music",
+    "genre": "Jazz",
+    "duration": 225,
+    "audioPath": "../assets/audio/jazz/background_jazz.mp3",
+    "coverPath": "../assets/images/jazz/background_jazz.png"
+  },
+  {
+    "title": "We jazz",
+    "artist": "Jumping Bunny",
+    "genre": "Jazz",
+    "duration": 185,
+    "audioPath": "../assets/audio/jazz/we_jazz.mp3",
+    "coverPath": "../assets/images/jazz/we_jazz.png"
+  },
+  {
+    "title": "Dizzy jazz",
+    "artist": "Tokyo rifft",
+    "genre": "Jazz",
+    "duration": 294,
+    "audioPath": "../assets/audio/jazz/dizzy_jazz.mp3",
+    "coverPath": "../assets/images/jazz/dizzy_jazz.png"
+  },
+  {
+    "title": "Relax jazz",
+    "artist": "Onoychenko music",
+    "genre": "Jazz",
+    "duration": 223,
+    "audioPath": "../assets/audio/jazz/relax_jazz.mp3",
+    "coverPath": "../assets/images/jazz/relax_jazz.png"
+  },
+  {
+    "title": "Romantic jazz",
+    "artist": "Happiness in music",
+    "genre": "Jazz",
+    "duration": 256,
+    "audioPath": "../assets/audio/jazz/romantic_jazz.mp3",
+    "coverPath": "../assets/images/jazz/romantic_jazz.png"
+  },
+  {
+    "title": "Velvet jazz",
+    "artist": "Free audio library",
+    "genre": "Jazz",
+    "duration": 240,
+    "audioPath": "../assets/audio/jazz/velvet_jazz.mp3",
+    "coverPath": "../assets/images/jazz/velvet_jazz.png"
+  },
+  {
+    "title": "Smooth jazz",
+    "artist": "Hits Lab",
+    "genre": "Jazz",
+    "duration": 78,
+    "audioPath": "../assets/audio/jazz/smooth_jazz.mp3",
+    "coverPath": "../assets/images/jazz/smooth_jazz.png"
+  },
+  {
+    "title": "Acid jazz",
+    "artist": "Jumping Bunny",
+    "genre": "Jazz",
+    "duration": 158,
+    "audioPath": "../assets/audio/jazz/acid_jazz.mp3",
+    "coverPath": "../assets/images/jazz/acid_jazz.png"
+  },
+  {
+    "title": "Sunset jazz",
+    "artist": "Free audio library",
+    "genre": "Jazz",
+    "duration": 219,
+    "audioPath": "../assets/audio/jazz/sunset_jazz.mp3",
+    "coverPath": "../assets/images/jazz/sunset_jazz.png"
+  },
+  {
+    "title": "Coastal jazz",
+    "artist": "Onoychenko music",
+    "genre": "Jazz",
+    "duration": 211,
+    "audioPath": "../assets/audio/jazz/coastal_jazz.mp3",
+    "coverPath": "../assets/images/jazz/coastal_jazz.png"
+  },
+  {
+    "title": "Lounge jazz",
+    "artist": "Ikoliks",
+    "genre": "Jazz",
+    "duration": 87,
+    "audioPath": "../assets/audio/jazz/lounge_jazz.mp3",
+    "coverPath": "../assets/images/jazz/lounge_jazz.png"
+  },
+  {
+    "title": "Hot jazz",
+    "artist": "Jumping Bunny",
+    "genre": "Jazz",
+    "duration": 240,
+    "audioPath": "../assets/audio/jazz/hot_jazz.mp3",
+    "coverPath": "../assets/images/jazz/hot_jazz.png"
+  },
+  {
+    "title": "Jazz cafe",
+    "artist": "Soundore",
+    "genre": "Jazz",
+    "duration": 264,
+    "audioPath": "../assets/audio/jazz/jazz_cafe.mp3",
+    "coverPath": "../assets/images/jazz/jazz_cafe.png"
+  },
+  {
+    "title": "Funk jazz",
+    "artist": "Art Manzh",
+    "genre": "Jazz",
+    "duration": 288,
+    "audioPath": "../assets/audio/jazz/funk_jazz.mp3",
+    "coverPath": "../assets/images/jazz/funk_jazz.png"
+  },
+  {
+    "title": "Jazz vibe",
+    "artist": "Music flow",
+    "genre": "Jazz",
+    "duration": 228,
+    "audioPath": "../assets/audio/jazz/jazz_vibe.mp3",
+    "coverPath": "../assets/images/jazz/jazz_vibe.png"
+  },
+  {
+    "title": "Evening jazz",
+    "artist": "Sync Lab music",
+    "genre": "Jazz",
+    "duration": 274,
+    "audioPath": "../assets/audio/jazz/evening_jazz.mp3",
+    "coverPath": "../assets/images/jazz/evening_jazz.png"
+  },
+  {
+    "title": "Elevator jazz",
+    "artist": "Ikoliks",
+    "genre": "Jazz",
+    "duration": 84,
+    "audioPath": "../assets/audio/jazz/elevator_jazz.mp3",
+    "coverPath": "../assets/images/jazz/elevator_jazz.png"
+  },
+  {
+    "title": "Restaurant jazz",
+    "artist": "Ikoliks",
+    "genre": "Jazz",
+    "duration": 87,
+    "audioPath": "../assets/audio/jazz/restaurant_jazz.mp3",
+    "coverPath": "../assets/images/jazz/restaurant_jazz.png"
+  },
+  {
+    "title": "Lazy waves",
+    "artist": "Music flow",
+    "genre": "Jazz",
+    "duration": 225,
+    "audioPath": "../assets/audio/jazz/lazy_waves.mp3",
+    "coverPath": "../assets/images/jazz/lazy_waves.png"
+  },
+  {
+    "title": "Cinematic hip-hop",
+    "artist": "Rockot",
+    "genre": "Hip-Hop",
+    "duration": 140,
+    "audioPath": "../assets/audio/hiphop/cinematic_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/cinematic_hiphop.png"
+  },
+  {
+    "title": "Chill hip-hop",
+    "artist": "Keyframe audio",
+    "genre": "Hip-Hop",
+    "duration": 166,
+    "audioPath": "../assets/audio/hiphop/chill_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/chill_hiphop.png"
+  },
+  {
+    "title": "No hip-hop",
+    "artist": "MFCC",
+    "genre": "Hip-Hop",
+    "duration": 129,
+    "audioPath": "../assets/audio/hiphop/no_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/no_hiphop.png"
+  },
+  {
+    "title": "Upbeat hip-hop",
+    "artist": "In Plus Music",
+    "genre": "Hip-Hop",
+    "duration": 100,
+    "audioPath": "../assets/audio/hiphop/upbeat_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/upbeat_hiphop.png"
+  },
+  {
+    "title": "You hip-hop",
+    "artist": "MFCC",
+    "genre": "Hip-Hop",
+    "duration": 90,
+    "audioPath": "../assets/audio/hiphop/you_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/you_hiphop.png"
+  },
+  {
+    "title": "Soft hip-hop",
+    "artist": "MFCC",
+    "genre": "Hip-Hop",
+    "duration": 144,
+    "audioPath": "../assets/audio/hiphop/soft_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/soft_hiphop.png"
+  },
+  {
+    "title": "Spirit hip-hop",
+    "artist": "Roman Belov",
+    "genre": "Hip-Hop",
+    "duration": 108,
+    "audioPath": "../assets/audio/hiphop/spirit_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/spirit_hiphop.png"
+  },
+  {
+    "title": "Paris hip-hop",
+    "artist": "Pump up the mind",
+    "genre": "Hip-Hop",
+    "duration": 132,
+    "audioPath": "../assets/audio/hiphop/paris_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/paris_hiphop.png"
+  },
+  {
+    "title": "Warm hip-hop",
+    "artist": "FASS sounds",
+    "genre": "Hip-Hop",
+    "duration": 114,
+    "audioPath": "../assets/audio/hiphop/warm_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/warm_hiphop.png"
+  },
+  {
+    "title": "Ethnic hip-hop",
+    "artist": "Rockot",
+    "genre": "Hip-Hop",
+    "duration": 182,
+    "audioPath": "../assets/audio/hiphop/ethnic_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/ethnic_hiphop.png"
+  },
+  {
+    "title": "Velvet hip-hop",
+    "artist": "Grand project",
+    "genre": "Hip-Hop",
+    "duration": 132,
+    "audioPath": "../assets/audio/hiphop/velvet_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/velvet_hiphop.png"
+  },
+  {
+    "title": "Throne hip-hop",
+    "artist": "Grand project",
+    "genre": "Hip-Hop",
+    "duration": 153,
+    "audioPath": "../assets/audio/hiphop/throne_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/throne_hiphop.png"
+  },
+  {
+    "title": "Instrumental hip-hop",
+    "artist": "Yellow Bird Beats",
+    "genre": "Hip-Hop",
+    "duration": 184,
+    "audioPath": "../assets/audio/hiphop/hiphop_instrumental.mp3",
+    "coverPath": "../assets/images/hiphop/hiphop_instrumental.png"
+  },
+  {
+    "title": "Urban hip-hop",
+    "artist": "Momot music",
+    "genre": "Hip-Hop",
+    "duration": 114,
+    "audioPath": "../assets/audio/hiphop/urban_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/urban_hiphop.png"
+  },
+  {
+    "title": "Easy hip-hop",
+    "artist": "Studio kolomna",
+    "genre": "Hip-Hop",
+    "duration": 77,
+    "audioPath": "../assets/audio/hiphop/easy_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/easy_hiphop.png"
+  },
+  {
+    "title": "Turn hip-hop",
+    "artist": "Rockot",
+    "genre": "Hip-Hop",
+    "duration": 167,
+    "audioPath": "../assets/audio/hiphop/turn_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/turn_hiphop.png"
+  },
+  {
+    "title": "Jazz hip-hop",
+    "artist": "MFCC",
+    "genre": "Hip-Hop",
+    "duration": 131,
+    "audioPath": "../assets/audio/hiphop/jazz_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/jazz_hiphop.png"
+  },
+  {
+    "title": "Beat hip-hop",
+    "artist": "ENheee",
+    "genre": "Hip-Hop",
+    "duration": 227,
+    "audioPath": "../assets/audio/hiphop/hiphop_beat.mp3",
+    "coverPath": "../assets/images/hiphop/hiphop_beat.png"
+  },
+  {
+    "title": "Energetic hip-hop",
+    "artist": "Skilsel",
+    "genre": "Hip-Hop",
+    "duration": 114,
+    "audioPath": "../assets/audio/hiphop/energetic_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/energetic_hiphop.png"
+  },
+  {
+    "title": "Funk hip-hop",
+    "artist": "Nesterouk",
+    "genre": "Hip-Hop",
+    "duration": 73,
+    "audioPath": "../assets/audio/hiphop/funk_hiphop.mp3",
+    "coverPath": "../assets/images/hiphop/funk_hiphop.png"
+  },
+  {
+    "title": "Classical background",
+    "artist": "Hits Lab",
+    "genre": "Classical",
+    "duration": 134,
+    "audioPath": "../assets/audio/classical/classical_background.mp3",
+    "coverPath": "../assets/images/classical/classical_background.png"
+  },
+  {
+    "title": "Classical royal",
+    "artist": "Hits Lab",
+    "genre": "Classical",
+    "duration": 92,
+    "audioPath": "../assets/audio/classical/classical_royal.mp3",
+    "coverPath": "../assets/images/classical/classical_royal.png"
+  },
+  {
+    "title": "Classical british",
+    "artist": "Original soundtrack",
+    "genre": "Classical",
+    "duration": 128,
+    "audioPath": "../assets/audio/classical/classical_british.mp3",
+    "coverPath": "../assets/images/classical/classical_british.png"
+  },
+  {
+    "title": "Soft piano",
+    "artist": "Original soundtrack",
+    "genre": "Classical",
+    "duration": 148,
+    "audioPath": "../assets/audio/classical/soft_piano.mp3",
+    "coverPath": "../assets/images/classical/soft_piano.png"
+  },
+  {
+    "title": "Calm classical",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 144,
+    "audioPath": "../assets/audio/classical/calm_classical.mp3",
+    "coverPath": "../assets/images/classical/calm_classical.png"
+  },
+  {
+    "title": "Moonlight sonata",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 377,
+    "audioPath": "../assets/audio/classical/moonlight_sonata.mp3",
+    "coverPath": "../assets/images/classical/moonlight_sonata.png"
+  },
+  {
+    "title": "Chamber symphony",
+    "artist": "Sonican",
+    "genre": "Classical",
+    "duration": 116,
+    "audioPath": "../assets/audio/classical/chamber_symphony.mp3",
+    "coverPath": "../assets/images/classical/chamber_symphony.png"
+  },
+  {
+    "title": "Classical happiness",
+    "artist": "Sonican",
+    "genre": "Classical",
+    "duration": 128,
+    "audioPath": "../assets/audio/classical/classical_happiness.mp3",
+    "coverPath": "../assets/images/classical/classical_happiness.png"
+  },
+  {
+    "title": "Piano classic",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 133,
+    "audioPath": "../assets/audio/classical/piano_classic.mp3",
+    "coverPath": "../assets/images/classical/piano_classic.png"
+  },
+  {
+    "title": "Relaxing piano",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 72,
+    "audioPath": "../assets/audio/classical/relaxing_piano.mp3",
+    "coverPath": "../assets/images/classical/relaxing_piano.png"
+  },
+  {
+    "title": "Classical modern",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 86,
+    "audioPath": "../assets/audio/classical/classical_modern.mp3",
+    "coverPath": "../assets/images/classical/classical_modern.png"
+  },
+  {
+    "title": "Melancholic classical",
+    "artist": "Sonican",
+    "genre": "Classical",
+    "duration": 122,
+    "audioPath": "../assets/audio/classical/melancholic_classical.mp3",
+    "coverPath": "../assets/images/classical/melancholic_classical.png"
+  },
+  {
+    "title": "New classical",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 165,
+    "audioPath": "../assets/audio/classical/new_classical.mp3",
+    "coverPath": "../assets/images/classical/new_classical.png"
+  },
+  {
+    "title": "Fur Elise",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 172,
+    "audioPath": "../assets/audio/classical/fur_elise.mp3",
+    "coverPath": "../assets/images/classical/fur_elise.png"
+  },
+  {
+    "title": "Pain",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 166,
+    "audioPath": "../assets/audio/classical/pain.mp3",
+    "coverPath": "../assets/images/classical/pain.png"
+  },
+  {
+    "title": "Ambient piano",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 167,
+    "audioPath": "../assets/audio/classical/ambient_piano.mp3",
+    "coverPath": "../assets/images/classical/ambient_piano.png"
+  },
+  {
+    "title": "Sad violin",
+    "artist": "Clavier music",
+    "genre": "Classical",
+    "duration": 259,
+    "audioPath": "../assets/audio/classical/sad_violin.mp3",
+    "coverPath": "../assets/images/classical/sad_violin.png"
+  },
+  {
+    "title": "Classical loop",
+    "artist": "Sonican",
+    "genre": "Classical",
+    "duration": 111,
+    "audioPath": "../assets/audio/classical/classical_loop.mp3",
+    "coverPath": "../assets/images/classical/classical_loop.png"
+  },
+  {
+    "title": "Positive loop",
+    "artist": "Sonican",
+    "genre": "Classical",
+    "duration": 122,
+    "audioPath": "../assets/audio/classical/positive_loop.mp3",
+    "coverPath": "../assets/images/classical/positive_loop.png"
+  },
+  {
+    "title": "Aristocracy",
+    "artist": "Pineapple music",
+    "genre": "Classical",
+    "duration": 108,
+    "audioPath": "../assets/audio/classical/aristocracy.mp3",
+    "coverPath": "../assets/images/classical/aristocracy.png"
+  },
+  {
+    "title": "Dreaming of reggae",
+    "artist": "Figaro reggae music",
+    "genre": "Reggae",
+    "duration": 239,
+    "audioPath": "../assets/audio/reggae/dreaming_of_reggae.mp3",
+    "coverPath": "../assets/images/reggae/dreaming_of_reggae.png"
+  },
+  {
+    "title": "Reggae brothers",
+    "artist": "Catch 22 Music",
+    "genre": "Reggae",
+    "duration": 185,
+    "audioPath": "../assets/audio/reggae/reggae_brothers.mp3",
+    "coverPath": "../assets/images/reggae/reggae_brothers.png"
+  },
+  {
+    "title": "Just in time",
+    "artist": "Figaro reggae music",
+    "genre": "Reggae",
+    "duration": 183,
+    "audioPath": "../assets/audio/reggae/just_in_time.mp3",
+    "coverPath": "../assets/images/reggae/just_in_time.png"
+  },
+  {
+    "title": "Jamaican rasta",
+    "artist": "MFCC",
+    "genre": "Reggae",
+    "duration": 105,
+    "audioPath": "../assets/audio/reggae/jamaican_rasta.mp3",
+    "coverPath": "../assets/images/reggae/jamaican_rasta.png"
+  },
+  {
+    "title": "Roots reggae",
+    "artist": "Mr Basins",
+    "genre": "Reggae",
+    "duration": 132,
+    "audioPath": "../assets/audio/reggae/roots_reggae.mp3",
+    "coverPath": "../assets/images/reggae/roots_reggae.png"
+  },
+  {
+    "title": "Feel the vibe",
+    "artist": "Figaro reggae music",
+    "genre": "Reggae",
+    "duration": 125,
+    "audioPath": "../assets/audio/reggae/feel_the_vibe.mp3",
+    "coverPath": "../assets/images/reggae/feel_the_vibe.png"
+  },
+  {
+    "title": "Penney lover",
+    "artist": "Figaro reggae music",
+    "genre": "Reggae",
+    "duration": 304,
+    "audioPath": "../assets/audio/reggae/penney_lover.mp3",
+    "coverPath": "../assets/images/reggae/penney_lover.png"
+  },
+  {
+    "title": "Tropical reggae",
+    "artist": "Mepa Melson",
+    "genre": "Reggae",
+    "duration": 223,
+    "audioPath": "../assets/audio/reggae/tropical_reggae.mp3",
+    "coverPath": "../assets/images/reggae/tropical_reggae.png"
+  },
+  {
+    "title": "Grey skies",
+    "artist": "Figaro reggae music",
+    "genre": "Reggae",
+    "duration": 185,
+    "audioPath": "../assets/audio/reggae/grey_skies.mp3",
+    "coverPath": "../assets/images/reggae/grey_skies.png"
+  },
+  {
+    "title": "Reggae beat",
+    "artist": "Playlist sons",
+    "genre": "Reggae",
+    "duration": 226,
+    "audioPath": "../assets/audio/reggae/reggae_beat.mp3",
+    "coverPath": "../assets/images/reggae/reggae_beat.png"
+  },
+  {
+    "title": "Mellow vibes",
+    "artist": "Mohamed Hassan",
+    "genre": "Reggae",
+    "duration": 90,
+    "audioPath": "../assets/audio/reggae/mellow_vibes.mp3",
+    "coverPath": "../assets/images/reggae/mellow_vibes.png"
+  },
+  {
+    "title": "Jamaikinho",
+    "artist": "Flakitoprod",
+    "genre": "Reggae",
+    "duration": 229,
+    "audioPath": "../assets/audio/reggae/jamaikinho.mp3",
+    "coverPath": "../assets/images/reggae/jamaikinho.png"
+  },
+  {
+    "title": "Caribbean vibes",
+    "artist": "Figaro reggae music",
+    "genre": "Reggae",
+    "duration": 129,
+    "audioPath": "../assets/audio/reggae/caribbean_vibes.mp3",
+    "coverPath": "../assets/images/reggae/caribbean_vibes.png"
+  },
+  {
+    "title": "Chill rasta",
+    "artist": "Brotheration records",
+    "genre": "Reggae",
+    "duration": 193,
+    "audioPath": "../assets/audio/reggae/chill_rasta.mp3",
+    "coverPath": "../assets/images/reggae/chill_rasta.png"
+  },
+  {
+    "title": "Beach reggae",
+    "artist": "u_98673jp944",
+    "genre": "Reggae",
+    "duration": 97,
+    "audioPath": "../assets/audio/reggae/beach_reggae.mp3",
+    "coverPath": "../assets/images/reggae/beach_reggae.png"
+  },
+  {
+    "title": "Reggae island",
+    "artist": "Rene1905",
+    "genre": "Reggae",
+    "duration": 206,
+    "audioPath": "../assets/audio/reggae/reggae_island.mp3",
+    "coverPath": "../assets/images/reggae/reggae_island.png"
+  },
+  {
+    "title": "Du balcon",
+    "artist": "Olle August",
+    "genre": "Reggae",
+    "duration": 144,
+    "audioPath": "../assets/audio/reggae/du_balcon.mp3",
+    "coverPath": "../assets/images/reggae/du_balcon.png"
+  },
+  {
+    "title": "Reggae soul",
+    "artist": "u_98673jp944",
+    "genre": "Reggae",
+    "duration": 94,
+    "audioPath": "../assets/audio/reggae/reggae_soul.mp3",
+    "coverPath": "../assets/images/reggae/reggae_soul.png"
+  },
+  {
+    "title": "Morning reggae",
+    "artist": "Alana Jordan",
+    "genre": "Reggae",
+    "duration": 118,
+    "audioPath": "../assets/audio/reggae/morning_reggae.mp3",
+    "coverPath": "../assets/images/reggae/morning_reggae.png"
+  },
+  {
+    "title": "Reggae town",
+    "artist": "Julius H",
+    "genre": "Reggae",
+    "duration": 119,
+    "audioPath": "../assets/audio/reggae/reggae_town.mp3",
+    "coverPath": "../assets/images/reggae/reggae_town.png"
+  },
+  {
+    "title": "Dubstep basketball",
+    "artist": "Hits Lab",
+    "genre": "Dubstep",
+    "duration": 67,
+    "audioPath": "../assets/audio/dubstep/dubstep_basketball.mp3",
+    "coverPath": "../assets/images/dubstep/dubstep_basketball.png"
+  },
+  {
+    "title": "Dubstep trap",
+    "artist": "Hits Lab",
+    "genre": "Dubstep",
+    "duration": 84,
+    "audioPath": "../assets/audio/dubstep/dubstep_trap.mp3",
+    "coverPath": "../assets/images/dubstep/dubstep_trap.png"
+  },
+  {
+    "title": "Halloween dubstep",
+    "artist": "01 Kiko SK",
+    "genre": "Dubstep",
+    "duration": 182,
+    "audioPath": "../assets/audio/dubstep/halloween_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/halloween_dubstep.png"
+  },
+  {
+    "title": "Soulsweeper",
+    "artist": "ItsWatR",
+    "genre": "Dubstep",
+    "duration": 211,
+    "audioPath": "../assets/audio/dubstep/soulsweeper.mp3",
+    "coverPath": "../assets/images/dubstep/soulsweeper.png"
+  },
+  {
+    "title": "Metal dubstep",
+    "artist": "Alex Kizenkov",
+    "genre": "Dubstep",
+    "duration": 94,
+    "audioPath": "../assets/audio/dubstep/metal_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/metal_dubstep.png"
+  },
+  {
+    "title": "Abstract dubstep",
+    "artist": "Artiss22",
+    "genre": "Dubstep",
+    "duration": 130,
+    "audioPath": "../assets/audio/dubstep/abstract_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/abstract_dubstep.png"
+  },
+  {
+    "title": "Pur dubstep",
+    "artist": "Dark NS",
+    "genre": "Dubstep",
+    "duration": 179,
+    "audioPath": "../assets/audio/dubstep/pur_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/pur_dubstep.png"
+  },
+  {
+    "title": "Digital hell",
+    "artist": "Cyberwave orchestra",
+    "genre": "Dubstep",
+    "duration": 237,
+    "audioPath": "../assets/audio/dubstep/digital_hell.mp3",
+    "coverPath": "../assets/images/dubstep/digital_hell.png"
+  },
+  {
+    "title": "Agressive dubstep",
+    "artist": "Alex Zavesa",
+    "genre": "Dubstep",
+    "duration": 117,
+    "audioPath": "../assets/audio/dubstep/agressive_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/agressive_dubstep.png"
+  },
+  {
+    "title": "Burning night",
+    "artist": "Neural Matrix",
+    "genre": "Dubstep",
+    "duration": 216,
+    "audioPath": "../assets/audio/dubstep/burning_night.mp3",
+    "coverPath": "../assets/images/dubstep/burning_night.png"
+  },
+  {
+    "title": "Upbeat dubstep",
+    "artist": "MFCC",
+    "genre": "Dubstep",
+    "duration": 123,
+    "audioPath": "../assets/audio/dubstep/upbeat_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/upbeat_dubstep.png"
+  },
+  {
+    "title": "Future bass",
+    "artist": "The mountain",
+    "genre": "Dubstep",
+    "duration": 148,
+    "audioPath": "../assets/audio/dubstep/future_bass.mp3",
+    "coverPath": "../assets/images/dubstep/future_bass.png"
+  },
+  {
+    "title": "Cinematic dubstep",
+    "artist": "Alex Kizenkov",
+    "genre": "Dubstep",
+    "duration": 93,
+    "audioPath": "../assets/audio/dubstep/cinematic_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/cinematic_dubstep.png"
+  },
+  {
+    "title": "Rise dubstep",
+    "artist": "Sound reality",
+    "genre": "Dubstep",
+    "duration": 182,
+    "audioPath": "../assets/audio/dubstep/rise_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/rise_dubstep.png"
+  },
+  {
+    "title": "Epic dubstep",
+    "artist": "Music unlimited",
+    "genre": "Dubstep",
+    "duration": 140,
+    "audioPath": "../assets/audio/dubstep/epic_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/epic_dubstep.png"
+  },
+  {
+    "title": "Dubstep genre",
+    "artist": "01 Kiko SK",
+    "genre": "Dubstep",
+    "duration": 240,
+    "audioPath": "../assets/audio/dubstep/dubstep_genre.mp3",
+    "coverPath": "../assets/images/dubstep/dubstep_genre.png"
+  },
+  {
+    "title": "Trap dubstep",
+    "artist": "whvle",
+    "genre": "Dubstep",
+    "duration": 55,
+    "audioPath": "../assets/audio/dubstep/trap_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/trap_dubstep.png"
+  },
+  {
+    "title": "King dubstep",
+    "artist": "Kulakovka",
+    "genre": "Dubstep",
+    "duration": 148,
+    "audioPath": "../assets/audio/dubstep/king_dubstep.mp3",
+    "coverPath": "../assets/images/dubstep/king_dubstep.png"
+  },
+  {
+    "title": "Amanita muscaria",
+    "artist": "Nick Panek",
+    "genre": "Dubstep",
+    "duration": 110,
+    "audioPath": "../assets/audio/dubstep/amanita_muscaria.mp3",
+    "coverPath": "../assets/images/dubstep/amanita_muscaria.png"
+  },
+  {
+    "title": "Dubstep power",
+    "artist": "Background music master",
+    "genre": "Dubstep",
+    "duration": 158,
+    "audioPath": "../assets/audio/dubstep/dubstep_power.mp3",
+    "coverPath": "../assets/images/dubstep/dubstep_power.png"
+  },
+  {
+    "title": "Deep house",
+    "artist": "arnaud136",
+    "genre": "House",
+    "duration": 231,
+    "audioPath": "../assets/audio/house/deep_house.mp3",
+    "coverPath": "../assets/images/house/deep_house.png"
+  },
+  {
+    "title": "House on",
+    "artist": "DELO Sound",
+    "genre": "House",
+    "duration": 136,
+    "audioPath": "../assets/audio/house/house_on.mp3",
+    "coverPath": "../assets/images/house/house_on.png"
+  },
+  {
+    "title": "Tech house",
+    "artist": "arnaud136",
+    "genre": "House",
+    "duration": 171,
+    "audioPath": "../assets/audio/house/tech_house.mp3",
+    "coverPath": "../assets/images/house/tech_house.png"
+  },
+  {
+    "title": "Evening house",
+    "artist": "9JackJack8",
+    "genre": "House",
+    "duration": 222,
+    "audioPath": "../assets/audio/house/evening_house.mp3",
+    "coverPath": "../assets/images/house/evening_house.png"
+  },
+  {
+    "title": "Afro house",
+    "artist": "PlayHouseSound",
+    "genre": "House",
+    "duration": 268,
+    "audioPath": "../assets/audio/house/afro_house.mp3",
+    "coverPath": "../assets/images/house/afro_house.png"
+  },
+  {
+    "title": "Shamanic house",
+    "artist": "NNChannel",
+    "genre": "House",
+    "duration": 164,
+    "audioPath": "../assets/audio/house/shamanic_house.mp3",
+    "coverPath": "../assets/images/house/shamanic_house.png"
+  },
+  {
+    "title": "Play house",
+    "artist": "PlayHouseSound",
+    "genre": "House",
+    "duration": 153,
+    "audioPath": "../assets/audio/house/play_house.mp3",
+    "coverPath": "../assets/images/house/play_house.png"
+  },
+  {
+    "title": "Luxury house",
+    "artist": "DELO Sound",
+    "genre": "House",
+    "duration": 192,
+    "audioPath": "../assets/audio/house/luxury_house.mp3",
+    "coverPath": "../assets/images/house/luxury_house.png"
+  },
+  {
+    "title": "Ibiza calling",
+    "artist": "Maksym_Dudchyk",
+    "genre": "House",
+    "duration": 72,
+    "audioPath": "../assets/audio/house/ibiza_calling.mp3",
+    "coverPath": "../assets/images/house/ibiza_calling.png"
+  },
+  {
+    "title": "Vocal house",
+    "artist": "9JackJack8",
+    "genre": "House",
+    "duration": 169,
+    "audioPath": "../assets/audio/house/vocal_house.mp3",
+    "coverPath": "../assets/images/house/vocal_house.png"
+  },
+  {
+    "title": "Bass house",
+    "artist": "9JackJack8",
+    "genre": "House",
+    "duration": 154,
+    "audioPath": "../assets/audio/house/bass_house.mp3",
+    "coverPath": "../assets/images/house/bass_house.png"
+  },
+  {
+    "title": "House loops",
+    "artist": "Joack Lofi",
+    "genre": "House",
+    "duration": 144,
+    "audioPath": "../assets/audio/house/house_loops.mp3",
+    "coverPath": "../assets/images/house/house_loops.png"
+  },
+  {
+    "title": "Tribal house",
+    "artist": "PlayHouseSound",
+    "genre": "House",
+    "duration": 212,
+    "audioPath": "../assets/audio/house/tribal_house.mp3",
+    "coverPath": "../assets/images/house/tribal_house.png"
+  },
+  {
+    "title": "Tropical house",
+    "artist": "Deep house music",
+    "genre": "House",
+    "duration": 237,
+    "audioPath": "../assets/audio/house/tropical_house.mp3",
+    "coverPath": "../assets/images/house/tropical_house.png"
+  },
+  {
+    "title": "Indian house",
+    "artist": "NverAvetyanMusic",
+    "genre": "House",
+    "duration": 256,
+    "audioPath": "../assets/audio/house/indian_house.mp3",
+    "coverPath": "../assets/images/house/indian_house.png"
+  },
+  {
+    "title": "Fury house",
+    "artist": "White records",
+    "genre": "House",
+    "duration": 85,
+    "audioPath": "../assets/audio/house/fury_house.mp3",
+    "coverPath": "../assets/images/house/fury_house.png"
+  },
+  {
+    "title": "Midnight house",
+    "artist": "Turtle Beats",
+    "genre": "House",
+    "duration": 356,
+    "audioPath": "../assets/audio/house/midnight_house.mp3",
+    "coverPath": "../assets/images/house/midnight_house.png"
+  },
+  {
+    "title": "Minimal house",
+    "artist": "DELO Sound",
+    "genre": "House",
+    "duration": 120,
+    "audioPath": "../assets/audio/house/minimal_house.mp3",
+    "coverPath": "../assets/images/house/minimal_house.png"
+  },
+  {
+    "title": "Slap house",
+    "artist": "RibhavAgrawal",
+    "genre": "House",
+    "duration": 218,
+    "audioPath": "../assets/audio/house/slap_house.mp3",
+    "coverPath": "../assets/images/house/slap_house.png"
+  },
+  {
+    "title": "Feel house",
+    "artist": "Hasenchat",
+    "genre": "House",
+    "duration": 135,
+    "audioPath": "../assets/audio/house/feel_house.mp3",
+    "coverPath": "../assets/images/house/feel_house.png"
+  }
 ]
