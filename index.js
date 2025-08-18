@@ -2,6 +2,7 @@ const express = require('express');
 const { dbConnection } = require('./database/config');
 require('dotenv').config();
 const cors = require('cors');
+const tracksRouter = require('./routes/tracks');
 
 
 // Crear el servidor de express
@@ -26,6 +27,7 @@ app.use( express.json () );
 
 // Rutas
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/tracks', tracksRouter);
 
 
 
