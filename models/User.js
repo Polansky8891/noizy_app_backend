@@ -14,8 +14,17 @@ const UserSchema = Schema({
     password: {
         type: String,
         require: true
-    }
-});
+    },
+    email: {
+        type: String,
+        require: true,
+        unique: true
+    },
+    favorites: [{
+        type: Schema.Types.ObjectId, ref: 'Track', index: true
+    }]
+    
+}, { timestamps: true});
 
 module.exports = model('User', UserSchema );
 
