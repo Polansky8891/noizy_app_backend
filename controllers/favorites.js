@@ -1,44 +1,65 @@
 const User = require('../models/User');
 const { validationResult } = require('express-validator');
+const mongoose = require('mongoose');
+const Track = require('../models/Track');
 
 const getFavorites = async (req, res) => {
     try {
-        const user = await User.findById(req.uid).populate({
-                path: 'favorites',
-                select: 'title artist duration audioUrl coverUrl'
-            });
-
-            res.json(user?.favorites || []);
-        } catch (err) {
-            console.error('[getFavorites] error:', err);
-            res.status(500).json({ msg: 'Error getting favorites'});
-        }
+        const user = await User.findById(req.uid).populate('favorites');
+        if (!user) return res.status(404).json({ ok: false, msg: 'User not found'});
+        res.json(user.favorites || []);
+    } catch (e) {
+        console.error('[getFavorites] error:', e);
+        res.status(500).json({ ok:false, msg: 'Server error'});
+    }
     
 };
 
 const addFavorite = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
-
-    const { trackId } = req.body;
     try {
-        await User.findByIdAndUpdate(req.uid, {$addToSet: { favorites: trackId}});
-        res.status.json({ ok: true, trackId });
-    } catch (error) {
-        console.error('[addFavorite] error:', err);
-        res.status(500).json({ msg: 'Error adding favorite'});
+        const { trackId } = req.body;
+        console.log('[addFavorite]', { uid: req.uid, trackId, body: req.body});
+
+        if (!trackId) return res.status(400).json({ ok: false, msg: 'trackId is required'});
+        if (!mongoose.Types.ObjectId.isValid(trackId)) {
+            return res.status(400).json({ ok: false, msg: 'Invalid trackId'});
+        }
+
+        const track = await Track.findById(trackId).select('_id');
+        if (!track) return res.status(404).json({ ok: false, msg: 'Track not found'});
+
+        const updated = await User.findByIdAndUpdate(
+            req.uid,
+            { $addToSet: { favorites: trackId } },
+            { new: true }
+        ).populate('favorites');
+
+        res.status(200).json(updated.favorites || []);
+    } catch (e) {
+        console.error('[addFavorite] error:', e);
+        res.status(500).json({ ok: false, msg: 'Server error' });
     }
 };
 
 const removeFavorite = async (req, res) => {
-    const { trackId } = req.params;
     try {
-        await User.findByIdAndUpdate(req.uid, {$pull: {favorites: trackId}});
-        res.json({ ok: true, trackId });
-    } catch (error) {
-        console.error('[removeFavorite] error:', err);
-        res.status(500).json({ msg: 'Error removing favorite' });
-        
+        const { trackId } = req.params;
+        console.log('[removeFavorite]', { uid: req.uid, trackId });
+
+        if (!mongoose.Types.ObjectId.isValid(trackId)) {
+            return res.status(400).json({ ok:false, msg: 'Invalid trackId'});
+        }
+
+        const updated = await User.findByIdAndUpdate(
+            req.uid,
+            { $pull: { favorites: trackId }},
+            { new: true }
+        ).populate('favorites');
+
+        res.status(200).json(updated.favorites || []);
+    } catch (e) {
+        console.error('[removeFavorite] error:', e);
+        res.status(500).json({ ok: false, msg: 'Server error'});
     }
 };
 

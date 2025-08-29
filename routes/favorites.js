@@ -9,9 +9,7 @@ router.use(validateJWT);
 
 router.get('/', getFavorites);
 
-router.post('/', [
-    check('trackId', 'El trackId es obligatorio').not().isEmpty()
-], addFavorite);
+router.post('/', [ check('trackId','El trackId es obligatorio').not().isEmpty() ], addFavorite);
 
 router.delete('/:trackId', removeFavorite);
 
