@@ -4,6 +4,7 @@ require('dotenv').config();
 const cors = require('cors');
 const tracksRouter = require('./routes/tracks');
 const favoritesRouter = require('./routes/favorites');
+require('dotenv').config({ path: '.env.local' });
 
 
 // Crear el servidor de express
