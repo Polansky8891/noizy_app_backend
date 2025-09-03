@@ -8,7 +8,7 @@ const PlayEventSchema = new mongoose.Schema({
 }, { versionKey: false});
 
 PlayEventSchema.index({ userId: 1, at: -1});
-module.exports = mongoose.model('PlayEevnt', PlayEventSchema);
+module.exports = mongoose.model('PlayEvent', PlayEventSchema);
 
 
 

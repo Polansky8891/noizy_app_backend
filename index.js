@@ -1,6 +1,6 @@
+require('dotenv').config();
 const express = require('express');
 const { dbConnection } = require('./database/config');
-require('dotenv').config();
 const cors = require('cors');
 const tracksRouter = require('./routes/tracks');
 const favoritesRouter = require('./routes/favorites');
@@ -31,6 +31,8 @@ app.use( express.json() );
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/tracks', tracksRouter);
 app.use('/api/me/favorites', require('./routes/favorites'));
+app.use('/api/stats', require('./routes/stats'));
+
 
 
 
@@ -38,3 +40,9 @@ app.use('/api/me/favorites', require('./routes/favorites'));
 app.listen( process.env.PORT, () => {
     console.log(`Servidor corriendo en puerto ${ process.env.PORT }`);
 })
+
+app.listen(process.env.PORT, '0.0.0.0', () => {
+  console.log(`API escuchando en ${process.env.PORT}`);
+});
+
+app.get('/api/ping', (req, res) => res.json({ ok: true, ts: Date.now() }));
