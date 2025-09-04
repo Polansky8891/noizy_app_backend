@@ -154,6 +154,7 @@ const googleSignIn = async (req, res = response) => {
             let dirty = false;
             if (!user.name && name) { user.name = name; dirty = true; }
             if (!user.photo && picture) { user.photo = picture; dirty = true; }
+            if (!user.firebaseUid) { user.firebaseUid = firebaseUid; dirty = true; }
             if (dirty) await user.save();
         }
 
