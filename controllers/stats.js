@@ -54,35 +54,51 @@ exports.summary = async (req, res) => {
         }
       },
       { $unwind: { path: '$t', preserveNullAndEmptyArrays: true } },
-      { $addFields: { genreMerged: { $ifNull: ['$genre', '$t.genre'] } } },
       {
-        $addFields: {
-          g: {
-            $cond: [
-              { $ne: ['$genreMerged', null] },
-              { $toLower: { $trim: { input: '$genreMerged' } } },
-              null
-            ]
-          }
-        }
-      },
-      { $match: { g: { $ne: null } } }, // omite nulos ⇒ no "Unknown"
-      { $group: { _id: '$g', ms: { $sum: '$ms' } } },
-      { $sort: { ms: -1 } },
-      { $limit: 5 },
-      {
-        $project: {
-          _id: 0,
-          // Title Case para mostrar bonito, y mantenemos ms
-          genre: {
-            $concat: [
-              { $toUpper: { $substrCP: ['$_id', 0, 1] } },
-              { $substrCP: ['$_id', 1, { $strLenCP: '$_id' }] }
-            ]
-          },
-          ms: 1
-        }
-      }
+  $addFields: {
+    // Si genre está ausente, vacío o "unknown", cae al del track
+    g0: {
+      $cond: [
+        {
+          $or: [
+            { $eq: [ { $type: '$genre' }, 'missing' ] },
+            { $eq: [ { $toLower: { $trim: { input: '$genre' } } }, 'unknown' ] },
+            { $eq: [ { $toLower: { $trim: { input: '$genre' } } }, '' ] }
+          ]
+        },
+        '$t.genre',
+        '$genre'
+      ]
+    }
+  }
+},
+{
+  $addFields: {
+    g: {
+      $cond: [
+        { $ne: ['$g0', null] },
+        { $toLower: { $trim: { input: '$g0' } } },
+        null
+      ]
+    }
+  }
+},
+{ $match: { g: { $ne: null, $ne: '' } } },   // omite vacíos
+{ $group: { _id: '$g', ms: { $sum: '$ms' } } },
+{ $sort: { ms: -1 } },
+{ $limit: 5 },
+{
+  $project: {
+    _id: 0,
+    genre: {
+      $concat: [
+        { $toUpper: { $substrCP: ['$_id', 0, 1] } },
+        { $substrCP: ['$_id', 1, { $strLenCP: '$_id' }] }
+      ]
+    },
+    ms: 1
+  }
+}
     ]);
 
     return res.json({
