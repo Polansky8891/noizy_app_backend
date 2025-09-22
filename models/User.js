@@ -1,30 +1,30 @@
 const { Schema, model } = require('mongoose');
 
-const UserSchema = Schema({
+const UserSchema = Schema(
 
-    name: {
-        type: String,
-        require: true
-    },
+   {
+    firebaseUid: { type: String, index: true, unique: true, sparse: true },
+
+    name: { type: String, required: false, trim: true },
+
     email: {
-        type: String,
-        require: true,
-        unique: true
+      type: String,
+      required: false,
+      trim: true,
+      lowercase: true,
+      index: true,
+      unique: true,
+      sparse: true, 
     },
-    password: {
-        type: String,
-        require: true
-    },
-    email: {
-        type: String,
-        require: true,
-        unique: true
-    },
-    favorites: [{
-        type: Schema.Types.ObjectId, ref: 'Track', index: true
-    }]
-    
-}, { timestamps: true});
 
-module.exports = model('User', UserSchema );
+    password: { type: String, required: false, select: false },
 
+    favorites: [{ type: Schema.Types.ObjectId, ref: 'Track', index: true }],
+  },
+  { timestamps: true }
+);
+
+UserSchema.index({ firebaseUid: 1 }, { unique: true, sparse: true });
+UserSchema.index({ email: 1 }, { unique: true, sparse: true });
+
+module.exports = model('User', UserSchema);

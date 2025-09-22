@@ -14,7 +14,11 @@ const app = express();
 dbConnection();
 
 // CORS
-app.use(cors())
+app.use(cors({
+  origin: true,
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+}));
 
 
 
@@ -33,6 +37,9 @@ app.use('/api/tracks', tracksRouter);
 app.use('/api/me/favorites', require('./routes/favorites'));
 app.use('/api/stats', require('./routes/stats'));
 
+app.use('/api/debug', require('./routes/debug'));
+
+
 
 
 
@@ -46,3 +53,4 @@ app.listen(process.env.PORT, '0.0.0.0', () => {
 });
 
 app.get('/api/ping', (req, res) => res.json({ ok: true, ts: Date.now() }));
+

@@ -3,68 +3,79 @@ const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const Track = require('../models/Track');
 
-const getFavorites = async (req, res) => {
-    try {
-        const user = await User.findById(req.uid).populate('favorites');
-        if (!user) return res.status(404).json({ ok: false, msg: 'User not found'});
-        res.json(user.favorites || []);
-    } catch (e) {
-        console.error('[getFavorites] error:', e);
-        res.status(500).json({ ok:false, msg: 'Server error'});
-    }
-    
+const asId = (v) => new mongoose.Types.ObjectId(v);
+
+exports.getFavorites = async (req, res) => {
+   try {
+    const firebaseUid = String(req.userId || '');
+    if (!firebaseUid) return res.status(401).json({ ok:false, msg:'unauthorized' });
+
+    const user = await User.findOne({ firebaseUid }).select('favorites').lean();
+    const ids = (user?.favorites || []).map(String);
+
+    const items = ids.length
+      ? await Track.find({ _id: { $in: ids.map(asId) } }).lean()
+      : [];
+
+    return res.json({ ok:true, favoritesIds: ids, items });
+  } catch (e) {
+    console.error('[favorites.get]', e);
+    return res.status(500).json({ ok:false, msg:'Server error' });
+  }
 };
 
-const addFavorite = async (req, res) => {
-    try {
-        const { trackId } = req.body;
-        console.log('[addFavorite]', { uid: req.uid, trackId, body: req.body});
+exports.addFavorite = async (req, res) => {
+  try {
+    const firebaseUid = String(req.userId || '');
+    if (!firebaseUid) return res.status(401).json({ ok:false, msg:'unauthorized' });
 
-        if (!trackId) return res.status(400).json({ ok: false, msg: 'trackId is required'});
-        if (!mongoose.Types.ObjectId.isValid(trackId)) {
-            return res.status(400).json({ ok: false, msg: 'Invalid trackId'});
-        }
-
-        const track = await Track.findById(trackId).select('_id');
-        if (!track) return res.status(404).json({ ok: false, msg: 'Track not found'});
-
-        const updated = await User.findByIdAndUpdate(
-            req.uid,
-            { $addToSet: { favorites: trackId } },
-            { new: true }
-        ).populate('favorites');
-
-        res.status(200).json(updated.favorites || []);
-    } catch (e) {
-        console.error('[addFavorite] error:', e);
-        res.status(500).json({ ok: false, msg: 'Server error' });
+    const { trackId } = req.body || {};
+    if (!mongoose.isValidObjectId(trackId)) {
+      return res.status(400).json({ ok:false, msg:'invalid trackId' });
     }
+
+    const user = await User.findOneAndUpdate(
+      { firebaseUid },
+      {
+        $setOnInsert: { firebaseUid, createdAt: new Date() },
+        $addToSet: { favorites: asId(trackId) },
+        $set: { updatedAt: new Date() },
+      },
+      { upsert: true, new: true }
+    ).lean();
+
+    const ids = (user?.favorites || []).map(String);
+    return res.json({ ok:true, added:true, trackId, favoritesIds: ids });
+  } catch (e) {
+    console.error('[favorites.add]', e);
+    return res.status(500).json({ ok:false, msg:'Server error' });
+  }
 };
 
-const removeFavorite = async (req, res) => {
-    try {
-        const { trackId } = req.params;
-        console.log('[removeFavorite]', { uid: req.uid, trackId });
+exports.removeFavorite = async (req, res) => {
+  try {
+    const firebaseUid = String(req.userId || '');
+    if (!firebaseUid) return res.status(401).json({ ok:false, msg:'unauthorized' });
 
-        if (!mongoose.Types.ObjectId.isValid(trackId)) {
-            return res.status(400).json({ ok:false, msg: 'Invalid trackId'});
-        }
-
-        const updated = await User.findByIdAndUpdate(
-            req.uid,
-            { $pull: { favorites: trackId }},
-            { new: true }
-        ).populate('favorites');
-
-        res.status(200).json(updated.favorites || []);
-    } catch (e) {
-        console.error('[removeFavorite] error:', e);
-        res.status(500).json({ ok: false, msg: 'Server error'});
+    const { trackId } = req.params;
+    if (!mongoose.isValidObjectId(trackId)) {
+      return res.status(400).json({ ok:false, msg:'invalid trackId' });
     }
+
+    const user = await User.findOneAndUpdate(
+      { firebaseUid },
+      {
+        $pull: { favorites: asId(trackId) },
+        $set: { updatedAt: new Date() },
+      },
+      { new: true }
+    ).lean();
+
+    const ids = (user?.favorites || []).map(String);
+    return res.json({ ok:true, removed:true, trackId, favoritesIds: ids });
+  } catch (e) {
+    console.error('[favorites.remove]', e);
+    return res.status(500).json({ ok:false, msg:'Server error' });
+  }
 };
 
-module.exports = {
-    getFavorites,
-    addFavorite,
-    removeFavorite
-}
