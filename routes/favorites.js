@@ -3,6 +3,7 @@ const { check } = require('express-validator');
 const { validateJWT } = require('../middlewares/validate-jwt');
 const { getFavorites, addFavorite, removeFavorite } = require('../controllers/favorites');
 
+
 const router = Router();
 
 router.use(validateJWT);

@@ -7,20 +7,12 @@ const { summary, tick } = require('../controllers/stats');
 
 const router = Router();
 
-const normalizeGenre = (g) => {
-  if (!g) return null;
-  const s = String(g).trim().toLowerCase();
-  const map = { 'hip hop':'Hip-Hop','hip-hop':'Hip-Hop','rap':'Hip-Hop','r&b':'R&B','rnb':'R&B',
-                'edm':'Electronic','dance/electronic':'Electronic','electronic':'Electronic' };
-  return map[s] ?? s.replace(/\b\w/g, m => m.toUpperCase());
-};
-
-router.post('/play', validateJWT, async (req, res) => {
+router.post('/play', async (req, res) => {
   try {
-    const uid = String(req.userId);
+    const uid = String(req.uid || '');
     if (!uid) return res.status(401).json({ ok:false, code:'unauthorized', msg:'no user' });
 
-    const { trackId, genre } = req.body;
+    const { trackId, genre } = req.body || {};
     if (!mongoose.isValidObjectId(trackId)) {
       return res.status(400).json({ ok:false, code:'invalid-arg', msg:'invalid trackId' });
     }
@@ -38,14 +30,15 @@ router.post('/play', validateJWT, async (req, res) => {
   }
 });
 
-// usa los controllers:
-router.post('/tick', validateJWT, tick);
-router.get('/summary', validateJWT, summary);
+// --- TICK & SUMMARY --- (controladores reales)
+router.post('/tick', tick);
+router.get('/summary', summary);
 
-router.get('/recent', validateJWT, async (req, res) => {
+// --- RECENT ---
+router.get('/recent', async (req, res) => {
   try {
-    const userId = req.userId;
-    if (!userId) return res.status(401).json({ ok:false, code:'unauthorized', msg:'no user' });
+    const uid = String(req.uid || '');
+    if (!uid) return res.status(401).json({ ok:false, code:'unauthorized', msg:'no user' });
 
     const items = await PlayEvent.find({ userId: uid })
       .sort({ at: -1 })

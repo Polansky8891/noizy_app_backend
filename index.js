@@ -1,56 +1,44 @@
 require('dotenv').config();
+
 const express = require('express');
 const { dbConnection } = require('./database/config');
 const cors = require('cors');
+const { validateJWT } = require('./middlewares/validate-jwt');
+
 const tracksRouter = require('./routes/tracks');
 const favoritesRouter = require('./routes/favorites');
-require('dotenv').config({ path: '.env.local' });
+const statsRouter = require('./routes/stats');
+const authRouter = require('./routes/auth');
+const debugRouter = require('./routes/debug');
 
-
-// Crear el servidor de express
 const app = express();
 
-//Database
 dbConnection();
 
-// CORS
 app.use(cors({
-  origin: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: [process.env.WEB_ORIGIN || 'http://localhost:5173'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-token'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  credentials: false,
 }));
 
-
-
-// Directorio público
 app.use( express.static('public'));
-
-
-// Lectura y parseo del body
 app.use( express.json() );
 
-
-
-// Rutas
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', authRouter);
 app.use('/api/tracks', tracksRouter);
-app.use('/api/me/favorites', require('./routes/favorites'));
-app.use('/api/stats', require('./routes/stats'));
+
+app.use('/api/me/favorites', validateJWT, favoritesRouter);
+app.use('/api/stats', validateJWT, statsRouter);
+app.use('/api/debug', validateJWT, debugRouter);
 
 app.use('/api/debug', require('./routes/debug'));
 
 
-
-
-
-// Escuchar las petiicones
-app.listen( process.env.PORT, () => {
-    console.log(`Servidor corriendo en puerto ${ process.env.PORT }`);
-})
-
-app.listen(process.env.PORT, '0.0.0.0', () => {
-  console.log(`API escuchando en ${process.env.PORT}`);
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`API escuchando en ${PORT}`);
 });
 
-app.get('/api/ping', (req, res) => res.json({ ok: true, ts: Date.now() }));
+
 
