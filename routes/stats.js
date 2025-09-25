@@ -7,7 +7,15 @@ const { summary, tick } = require('../controllers/stats');
 
 const router = Router();
 
-router.post('/play', async (req, res) => {
+const normalizeGenre = (g) => {
+if (!g) return null;
+const s = String(g).trim().toLowerCase();
+if (['hiphop','hip-hop','hip hop'].includes(s)) return 'Hip-Hop';
+if (s === 'classic') return 'Classical';
+return s ? s[0].toUpperCase() + s.slice(1) : null;
+};
+
+router.post('/play', validateJWT, async (req, res) => {
   try {
     const uid = String(req.uid || '');
     if (!uid) return res.status(401).json({ ok:false, code:'unauthorized', msg:'no user' });
