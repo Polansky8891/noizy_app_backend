@@ -7,7 +7,7 @@ const asId = (v) => new mongoose.Types.ObjectId(v);
 
 exports.getFavorites = async (req, res) => {
    try {
-    const firebaseUid = String(req.userId || '');
+    const firebaseUid = String(req.uid);
     if (!firebaseUid) return res.status(401).json({ ok:false, msg:'unauthorized' });
 
     const user = await User.findOne({ firebaseUid }).select('favorites').lean();
@@ -26,7 +26,7 @@ exports.getFavorites = async (req, res) => {
 
 exports.addFavorite = async (req, res) => {
   try {
-    const firebaseUid = String(req.userId || '');
+    const firebaseUid = String(req.uid);
     if (!firebaseUid) return res.status(401).json({ ok:false, msg:'unauthorized' });
 
     const { trackId } = req.body || {};
@@ -54,7 +54,7 @@ exports.addFavorite = async (req, res) => {
 
 exports.removeFavorite = async (req, res) => {
   try {
-    const firebaseUid = String(req.userId || '');
+    const firebaseUid = String(req.uid);
     if (!firebaseUid) return res.status(401).json({ ok:false, msg:'unauthorized' });
 
     const { trackId } = req.params;
