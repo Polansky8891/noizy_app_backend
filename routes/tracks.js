@@ -38,6 +38,7 @@ router.get('/', async (req, res) => {
       genre:   d.genre  ?? d.Genre  ?? "",
       coverUrl: d.coverUrl ?? d.cover ?? "",
       audioUrl: d.audioUrl ?? d.url  ?? "",
+      feel: d.feel,
     }));
 
     res.json({ items });

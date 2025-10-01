@@ -141,7 +141,8 @@
     "genre": "Pop",
     "duration": 131,
     "audioPath": "../assets/audio/pop/romantic_pop.mp3",
-    "coverPath": "../assets/images/pop/romantic_pop.png"
+    "coverPath": "../assets/images/pop/romantic_pop.png",
+    "feel": "romantic"
   },
   {
     "title": "Upbeat Pop",
@@ -157,7 +158,8 @@
     "genre": "Pop",
     "duration": 180,
     "audioPath": "../assets/audio/pop/uplifting_pop.mp3",
-    "coverPath": "../assets/images/pop/uplifting_pop.png"
+    "coverPath": "../assets/images/pop/uplifting_pop.png",
+    "feel": "energy"
   },
   {
     "title": "Dark techno instrumental",
@@ -333,7 +335,8 @@
     "genre": "Electro",
     "duration": 101,
     "audioPath": "../assets/audio/electro/electro_summer_positive_party.mp3",
-    "coverPath": "../assets/images/electro/electro_summer_positive_party.png"
+    "coverPath": "../assets/images/electro/electro_summer_positive_party.png",
+    "feel": "energy"
   },
   {
     "title": "Electro Magna",
@@ -397,7 +400,8 @@
     "genre": "Electro",
     "duration": 188,
     "audioPath": "../assets/audio/electro/i_will_take_you_to_the_moon.mp3",
-    "coverPath": "../assets/images/electro/i_will_take_you_to_the_moon.png"
+    "coverPath": "../assets/images/electro/i_will_take_you_to_the_moon.png",
+    "feel": "party"
   },
   {
     "title": "Driving electro swing",
@@ -405,7 +409,8 @@
     "genre": "Electro",
     "duration": 188,
     "audioPath": "../assets/audio/electro/driving_electro_swing.mp3",
-    "coverPath": "../assets/images/electro/driving_electro_swing.png"
+    "coverPath": "../assets/images/electro/driving_electro_swing.png",
+    "feel": "energy"
   },
   {
     "title": "Dancy electro swing",
@@ -437,7 +442,8 @@
     "genre": "Electro",
     "duration": 184,
     "audioPath": "../assets/audio/electro/electro_dutch.mp3",
-    "coverPath": "../assets/images/electro/electro_dutch.png"
+    "coverPath": "../assets/images/electro/electro_dutch.png",
+    "feel": "party"
   },
   {
     "title": "Electro syth",
@@ -461,7 +467,8 @@
     "genre": "Electro",
     "duration": 74,
     "audioPath": "../assets/audio/electro/dynamic_sport_electro.mp3",
-    "coverPath": "../assets/images/electro/dynamic_sport_electro.png"
+    "coverPath": "../assets/images/electro/dynamic_sport_electro.png",
+    "feel": "party"
   },
   {
     "title": "Electro assembly",
@@ -469,7 +476,8 @@
     "genre": "Electro",
     "duration": 261,
     "audioPath": "../assets/audio/electro/electro_assembly.mp3",
-    "coverPath": "../assets/images/electro/electro_assembly.png"
+    "coverPath": "../assets/images/electro/electro_assembly.png",
+    "feel": "party"
   },
   {
     "title": "Energy gaming",
@@ -485,7 +493,8 @@
     "genre": "Rock",
     "duration": 146,
     "audioPath": "../assets/audio/rock/fast_rock.mp3",
-    "coverPath": "../assets/images/rock/fast_rock.png"
+    "coverPath": "../assets/images/rock/fast_rock.png",
+    "feel": "energy"
   },
   {
     "title": "Energetic rock",
@@ -493,7 +502,8 @@
     "genre": "Rock",
     "duration": 93,
     "audioPath": "../assets/audio/rock/energetic_rock.mp3",
-    "coverPath": "../assets/images/rock/energetic_rock.png"
+    "coverPath": "../assets/images/rock/energetic_rock.png",
+    "feel": "energy"
   },
   {
     "title": "Motivation rock",
@@ -525,7 +535,8 @@
     "genre": "Rock",
     "duration": 82,
     "audioPath": "../assets/audio/rock/happy_rock.mp3",
-    "coverPath": "../assets/images/rock/happy_rock.png"
+    "coverPath": "../assets/images/rock/happy_rock.png",
+    "feel": "energy"
   },
   {
     "title": "Cool rock",
@@ -541,7 +552,8 @@
     "genre": "Rock",
     "duration": 136,
     "audioPath": "../assets/audio/rock/action_rock.mp3",
-    "coverPath": "../assets/images/rock/action_rock.png"
+    "coverPath": "../assets/images/rock/action_rock.png",
+    "feel": "energy"
   },
   {
     "title": "Upbeat rock",
@@ -653,7 +665,8 @@
     "genre": "Blues",
     "duration": 147,
     "audioPath": "../assets/audio/blues/rainy_day_blues.mp3",
-    "coverPath": "../assets/images/blues/rainy_day_blues.png"
+    "coverPath": "../assets/images/blues/rainy_day_blues.png",
+    "feel": "chill"
   },
   {
     "title": "Kansas blues",
@@ -669,7 +682,8 @@
     "genre": "Blues",
     "duration": 227,
     "audioPath": "../assets/audio/blues/romantic_blues.mp3",
-    "coverPath": "../assets/images/blues/romantic_blues.png"
+    "coverPath": "../assets/images/blues/romantic_blues.png",
+    "feel": "romantic"
   },
   {
     "title": "Majestic blues",
@@ -749,7 +763,8 @@
     "genre": "Blues",
     "duration": 110,
     "audioPath": "../assets/audio/blues/summer_blues.mp3",
-    "coverPath": "../assets/images/blues/summer_blues.png"
+    "coverPath": "../assets/images/blues/summer_blues.png",
+    "feel": "chill"
   },
   {
     "title": "Lonely blues",
@@ -757,7 +772,8 @@
     "genre": "Blues",
     "duration": 336,
     "audioPath": "../assets/audio/blues/lonely_blues.mp3",
-    "coverPath": "../assets/images/blues/lonely_blues.png"
+    "coverPath": "../assets/images/blues/lonely_blues.png",
+    "feel": "romantic"
   },
   {
     "title": "Blues bar",
@@ -1157,7 +1173,8 @@
     "genre": "Classical",
     "duration": 144,
     "audioPath": "../assets/audio/classical/calm_classical.mp3",
-    "coverPath": "../assets/images/classical/calm_classical.png"
+    "coverPath": "../assets/images/classical/calm_classical.png",
+    "feel": "chill"
   },
   {
     "title": "Moonlight sonata",
@@ -1181,7 +1198,8 @@
     "genre": "Classical",
     "duration": 128,
     "audioPath": "../assets/audio/classical/classical_happiness.mp3",
-    "coverPath": "../assets/images/classical/classical_happiness.png"
+    "coverPath": "../assets/images/classical/classical_happiness.png",
+    "feel": "romantic"
   },
   {
     "title": "Piano classic",
@@ -1189,7 +1207,8 @@
     "genre": "Classical",
     "duration": 133,
     "audioPath": "../assets/audio/classical/piano_classic.mp3",
-    "coverPath": "../assets/images/classical/piano_classic.png"
+    "coverPath": "../assets/images/classical/piano_classic.png",
+    "feel": "chill"
   },
   {
     "title": "Relaxing piano",
@@ -1197,7 +1216,8 @@
     "genre": "Classical",
     "duration": 72,
     "audioPath": "../assets/audio/classical/relaxing_piano.mp3",
-    "coverPath": "../assets/images/classical/relaxing_piano.png"
+    "coverPath": "../assets/images/classical/relaxing_piano.png",
+    "feel": "chill"
   },
   {
     "title": "Classical modern",
@@ -1205,7 +1225,8 @@
     "genre": "Classical",
     "duration": 86,
     "audioPath": "../assets/audio/classical/classical_modern.mp3",
-    "coverPath": "../assets/images/classical/classical_modern.png"
+    "coverPath": "../assets/images/classical/classical_modern.png",
+    "feel": "romantic"
   },
   {
     "title": "Melancholic classical",
@@ -1237,7 +1258,8 @@
     "genre": "Classical",
     "duration": 166,
     "audioPath": "../assets/audio/classical/pain.mp3",
-    "coverPath": "../assets/images/classical/pain.png"
+    "coverPath": "../assets/images/classical/pain.png",
+    "feel": "chill"
   },
   {
     "title": "Ambient piano",
@@ -1333,7 +1355,8 @@
     "genre": "Reggae",
     "duration": 304,
     "audioPath": "../assets/audio/reggae/penney_lover.mp3",
-    "coverPath": "../assets/images/reggae/penney_lover.png"
+    "coverPath": "../assets/images/reggae/penney_lover.png",
+    "feel": "chill"
   },
   {
     "title": "Tropical reggae",
@@ -1429,7 +1452,8 @@
     "genre": "Reggae",
     "duration": 118,
     "audioPath": "../assets/audio/reggae/morning_reggae.mp3",
-    "coverPath": "../assets/images/reggae/morning_reggae.png"
+    "coverPath": "../assets/images/reggae/morning_reggae.png",
+    "feel": "chill"
   },
   {
     "title": "Reggae town",
@@ -1445,7 +1469,8 @@
     "genre": "Dubstep",
     "duration": 67,
     "audioPath": "../assets/audio/dubstep/dubstep_basketball.mp3",
-    "coverPath": "../assets/images/dubstep/dubstep_basketball.png"
+    "coverPath": "../assets/images/dubstep/dubstep_basketball.png",
+    "feel": "party"
   },
   {
     "title": "Dubstep trap",
@@ -1565,7 +1590,8 @@
     "genre": "Dubstep",
     "duration": 240,
     "audioPath": "../assets/audio/dubstep/dubstep_genre.mp3",
-    "coverPath": "../assets/images/dubstep/dubstep_genre.png"
+    "coverPath": "../assets/images/dubstep/dubstep_genre.png",
+    "feel": "party"
   },
   {
     "title": "Trap dubstep",
@@ -1605,7 +1631,8 @@
     "genre": "House",
     "duration": 231,
     "audioPath": "../assets/audio/house/deep_house.mp3",
-    "coverPath": "../assets/images/house/deep_house.png"
+    "coverPath": "../assets/images/house/deep_house.png",
+    "feel": "party"
   },
   {
     "title": "House on",
@@ -1621,7 +1648,8 @@
     "genre": "House",
     "duration": 171,
     "audioPath": "../assets/audio/house/tech_house.mp3",
-    "coverPath": "../assets/images/house/tech_house.png"
+    "coverPath": "../assets/images/house/tech_house.png",
+    "feel": "party"
   },
   {
     "title": "Evening house",
@@ -1661,7 +1689,8 @@
     "genre": "House",
     "duration": 192,
     "audioPath": "../assets/audio/house/luxury_house.mp3",
-    "coverPath": "../assets/images/house/luxury_house.png"
+    "coverPath": "../assets/images/house/luxury_house.png",
+    "feel": "energy"
   },
   {
     "title": "Ibiza calling",
@@ -1669,7 +1698,8 @@
     "genre": "House",
     "duration": 72,
     "audioPath": "../assets/audio/house/ibiza_calling.mp3",
-    "coverPath": "../assets/images/house/ibiza_calling.png"
+    "coverPath": "../assets/images/house/ibiza_calling.png",
+    "feel": "energy"
   },
   {
     "title": "Vocal house",

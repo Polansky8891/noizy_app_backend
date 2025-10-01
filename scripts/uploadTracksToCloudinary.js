@@ -6,7 +6,7 @@ const path = require('path');              // 👈 IMPORTANTE
 const fs = require('fs');                  // 👈 IMPORTANTE
 require('dotenv').config();
 
-mongoose.connect(process.env.DB_CNN);
+mongoose.connect(process.env.MONGODB_CNN);
 
 // Raíz del proyecto (sube desde /scripts a /)
 const ASSETS_BASE = path.resolve(__dirname, '..');
@@ -25,7 +25,7 @@ const tracks = require('../tracks.json'); // ajusta ruta si hace falta
   try {
     for (const [i, t] of tracks.entries()) {
       try {
-        const { title, artist, genre, duration, audioPath, coverPath } = t;
+        const { title, artist, genre, duration, audioPath, coverPath, feel } = t;
 
         const audioAbs = resolveAsset(audioPath);
         const coverAbs = resolveAsset(coverPath);
@@ -54,6 +54,7 @@ const tracks = require('../tracks.json'); // ajusta ruta si hace falta
           duration: Number(duration) || null,
           audioUrl: audioUpload.secure_url,
           coverUrl: coverUpload.secure_url,
+          feel
         }).save();
 
         console.log(`✔️ [${i + 1}/${tracks.length}] "${title}" subido`);

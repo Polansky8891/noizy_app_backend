@@ -27,13 +27,9 @@ const TrackSchema = Schema({
         type: Number,
         required: true,
     },
-    plays: {
-        type: Number,
-        default: 0,
-    },
-    likes: {
-        type: Number,
-        default: 0,
+    feel: {
+        type: String,
+        default: '',
     },
 });
 
