@@ -22,13 +22,16 @@ const parseDuration = (d) => {
 
 router.get('/', async (req, res) => {
   try {
-    const { genre } = req.query;
+    const { genre, feel, limit } = req.query;
 
     const query = {};
     if (genre) query.genre = new RegExp(`^${escapeRegex(genre)}$`, 'i');
+    if (feel)  query.feel  = new RegExp(`^${escapeRegex(String(feel).toLowerCase())}$`, 'i');
 
-    // SIN .select(): trae todo y normalizamos nosotros
-    const docs = await Track.find(query).lean();
+    const docs = await Track
+      .find(query)
+      .limit(limit ? Number(limit) : 0) // opcional: permite ?limit=24
+      .lean();
 
     const items = docs.map(d => ({
       _id: d._id,
@@ -38,7 +41,7 @@ router.get('/', async (req, res) => {
       genre:   d.genre  ?? d.Genre  ?? "",
       coverUrl: d.coverUrl ?? d.cover ?? "",
       audioUrl: d.audioUrl ?? d.url  ?? "",
-      feel: d.feel,
+      feel: (d.feel || "").toLowerCase(),
     }));
 
     res.json({ items });
