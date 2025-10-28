@@ -1,6 +1,6 @@
 // routes/tracks.js
 const router = require('express').Router();
-const Track = require('../models/Track');
+const Track = require('../models/Track'); // <-- VUELVE LA IMPORTACIÓN DIRECTA
 
 const escapeRegex = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -22,13 +22,14 @@ const parseDuration = (d) => {
 
 router.get('/', async (req, res) => {
   try {
+    // ELIMINAMOS getModel() y usamos la variable Track directamente
     const { genre, feel, limit } = req.query;
 
     const query = {};
     if (genre) query.genre = new RegExp(`^${escapeRegex(genre)}$`, 'i');
     if (feel)  query.feel  = new RegExp(`^${escapeRegex(String(feel).toLowerCase())}$`, 'i');
 
-    const docs = await Track
+    const docs = await Track // <-- USAMOS Track directamente
       .find(query)
       .limit(limit ? Number(limit) : 0) // opcional: permite ?limit=24
       .lean();

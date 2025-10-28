@@ -2,8 +2,11 @@ const { Router } = require('express');
 const PlayEvent = require('../models/PlayEvent');
 const ListeningTick = require('../models/ListeningTick');
 const mongoose = require('mongoose');
-const { validateJWT } = require('../middlewares/validate-jwt');
-const { summary, tick } = require('../controllers/stats');
+const { validateJWT } = require('../middlewares/validate-jwt'); 
+
+// 🔑 CORRECCIÓN: Definición de la función JIT para el controlador de stats
+const getStatsController = () => require('../controllers/stats'); 
+const { summary, tick } = getStatsController(); // Cargamos JIT aquí
 
 const router = Router();
 
@@ -38,12 +41,12 @@ router.post('/play', validateJWT, async (req, res) => {
   }
 });
 
-// --- TICK & SUMMARY --- (controladores reales)
+// --- TICK & SUMMARY --- (controladores reales, usando las variables desestructuradas)
 router.post('/tick', tick);
 router.get('/summary', summary);
 
 // --- RECENT ---
-router.get('/recent', async (req, res) => {
+router.get('/recent', validateJWT, async (req, res) => { // Agregué validateJWT para proteger la ruta
   try {
     const uid = String(req.uid || '');
     if (!uid) return res.status(401).json({ ok:false, code:'unauthorized', msg:'no user' });

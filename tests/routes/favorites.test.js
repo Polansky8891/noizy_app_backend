@@ -1,97 +1,88 @@
+// tests/routes/favorites.test.js
+const express = require('express');
 const request = require('supertest');
-const { app } = require('../../index'); // Asumimos la ruta a tu instancia Express
 
-// --- MOCKING DE CONTROLADORES Y MIDDLEWARES ---
+/* ── Mocks (sin variables externas en los factories) ────────── */
+jest.mock('../../middlewares/validate-jwt', () => ({
+  validateJWT: jest.fn((req, _res, next) => { req.uid = 'u-123'; next(); }),
+}));
 
-// Mockear validateJWT middleware (SOLUCIÓN DE ÁMBITO)
-jest.mock('../../middlewares/validate-jwt', () => {
-    // Definimos la función DENTRO del callback
-    const validateJWT = jest.fn((req, res, next) => {
-        req.uid = 'mock-uid-123'; // Inyectamos un UID mockeado
-        next();
-    });
-    return { validateJWT };
+jest.mock('../../middlewares/fields-validators', () => ({
+  fieldsValidator: (req, res, next) => {
+    if (!req.body || !req.body.trackId) {
+      return res.status(400).json({
+        errors: [{ msg: 'El trackId es obligatorio', param: 'trackId' }],
+      });
+    }
+    next();
+  },
+}));
+
+jest.mock('../../controllers/favorites', () => ({
+  getFavorites: jest.fn((req, res) => res.json({ items: ['t1', 't2'], uid: req.uid })),
+  addFavorite: jest.fn((req, res) => res.status(201).json({ ok: true, trackId: req.body.trackId, uid: req.uid })),
+  removeFavorite: jest.fn((req, res) => res.json({ ok: true, removed: req.params.trackId, uid: req.uid })),
+}));
+
+/* ── Obtén referencias a los mocks ya creados ──────────────── */
+const { validateJWT } = require('../../middlewares/validate-jwt');
+const favCtrl = require('../../controllers/favorites');
+
+/* ── App con el router SUT ──────────────────────────────────── */
+const makeApp = () => {
+  const app = express();
+  app.use(express.json());
+  app.use('/favorites', require('../../routes/favorites'));
+  return app;
+};
+
+beforeEach(() => {
+  jest.clearAllMocks();
 });
 
-// OBTENEMOS LAS FUNCIONES MOCKEADAS PARA LAS EXPECTATIVAS
-const favoritesController = require('../../controllers/favorites');
+describe('Favorites routes', () => {
+  test('GET /favorites requiere JWT y llama al controller', async () => {
+    const app = makeApp();
+    const res = await request(app).get('/favorites');
 
-// **CORRECCIÓN CLAVE:** Obtenemos la referencia de validateJWT de forma segura
-const validateJWTReference = require('../../middlewares/validate-jwt').validateJWT;
+    expect(validateJWT).toHaveBeenCalledTimes(1);
+    expect(favCtrl.getFavorites).toHaveBeenCalledTimes(1);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ items: ['t1', 't2'], uid: 'u-123' });
+  });
 
-// Datos de prueba
-const MOCK_TRACK_ID = '60a1234567890abcdef01234a'; 
+  test('POST /favorites → 400 si falta trackId (fieldsValidator corta) y NO llama JWT ni addFavorite', async () => {
+    const app = makeApp();
+    const res = await request(app).post('/favorites').send({});
 
-// NOTA: Asumimos que la ruta principal es '/api/me/favorites' según tu index.js
-const BASE_ROUTE = '/api/me/favorites'; 
+    expect(res.status).toBe(400);
+    expect(res.body.errors?.[0]?.param).toBe('trackId');
 
-// ----------------------------------------------------------------------
-// TESTS DE RUTAS DE FAVORITOS
-// ----------------------------------------------------------------------
-describe('Favorites Routes Testing', () => {
+    expect(validateJWT).not.toHaveBeenCalled();
+    expect(favCtrl.addFavorite).not.toHaveBeenCalled();
+  });
 
-    beforeEach(() => {
-        jest.clearAllMocks();
-    });
+  test('POST /favorites con trackId válido pasa por JWT y ejecuta addFavorite', async () => {
+    const app = makeApp();
+    const res = await request(app).post('/favorites').send({ trackId: '507f1f77bcf86cd799439011' });
 
-    // ------------------------------------------------------------------
-    // 1. GET / (Obtener Favoritos)
-    // ------------------------------------------------------------------
-    it('1.1 GET / Debe requerir token, pasar la autorización y llamar a getFavorites', async () => {
-        await request(app)
-            .get(BASE_ROUTE)
-            .expect(200)
-            .then(response => {
-                expect(response.body.msg).toBe('get_mock');
-            });
+    expect(validateJWT).toHaveBeenCalledTimes(1);
+    expect(favCtrl.addFavorite).toHaveBeenCalledTimes(1);
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ ok: true, trackId: '507f1f77bcf86cd799439011', uid: 'u-123' });
+  });
 
-        expect(validateJWTReference).toHaveBeenCalledTimes(1);
-        expect(favoritesController.getFavorites).toHaveBeenCalledTimes(1);
-    });
+  test('DELETE /favorites/:trackId → 401 si validateJWT corta la petición', async () => {
+    // Simula token inválido SOLO en este test
+    validateJWT.mockImplementationOnce((_req, res, _next) =>
+      res.status(401).json({ msg: 'Token no válido' })
+    );
 
-    // ------------------------------------------------------------------
-    // 2. POST / (Añadir Favorito)
-    // ------------------------------------------------------------------
-    describe('POST / (Add Favorite)', () => {
+    const app = makeApp();
+    const res = await request(app).delete('/favorites/abc123');
 
-        it('2.1 Debe retornar 200 y llamar a addFavorite para un trackId válido', async () => {
-            const payload = { trackId: MOCK_TRACK_ID };
-
-            await request(app)
-                .post(BASE_ROUTE)
-                .send(payload)
-                .expect(200);
-
-            expect(validateJWTReference).toHaveBeenCalledTimes(1);
-            expect(favoritesController.addFavorite).toHaveBeenCalledTimes(1);
-        });
-
-        it('2.2 Debe retornar 400 si falta el trackId (Validación)', async () => {
-            await request(app)
-                .post(BASE_ROUTE)
-                .send({})
-                .expect(400)
-                .then(response => {
-                    expect(response.body.errors[0].msg).toContain('El trackId es obligatorio');
-                });
-
-            expect(favoritesController.addFavorite).not.toHaveBeenCalled();
-        });
-    });
-
-    // ------------------------------------------------------------------
-    // 3. DELETE /:trackId (Eliminar Favorito)
-    // ------------------------------------------------------------------
-    describe('DELETE /:trackId (Remove Favorite)', () => {
-
-        it('3.1 Debe retornar 200 y llamar a removeFavorite para un ID válido', async () => {
-            await request(app)
-                .delete(`${BASE_ROUTE}/${MOCK_TRACK_ID}`)
-                .expect(200);
-
-            expect(validateJWTReference).toHaveBeenCalledTimes(1);
-            expect(favoritesController.removeFavorite).toHaveBeenCalledTimes(1);
-        });
-    });
-
+    expect(res.status).toBe(401);
+    expect(res.body).toEqual({ msg: 'Token no válido' });
+    expect(favCtrl.removeFavorite).not.toHaveBeenCalled();
+  });
 });

@@ -1,11 +1,16 @@
+// Dentro de routes/auth.js
 
 const { Router } = require('express');
 const { check } = require('express-validator');
-const router = Router();
-
-const { createUser, loginUser, renewToken, googleSignIn } = require('../controllers/auth');
 const { fieldsValidator } = require('../middlewares/fields-validators');
 const { validateJWT } = require('../middlewares/validate-jwt');
+
+const router = Router();
+
+// FUNCIÓN DE CARGA DIFERIDA (JIT) para evitar errores de Jest/Hoisting
+const getController = () => {
+    return require('../controllers/auth');
+};
 
 
 router.post(
@@ -16,7 +21,9 @@ router.post(
         check('password', 'password must contain at least 6 characters').isLength({ min:6 }),
         fieldsValidator
     ],
-    createUser);
+    // Usamos el controlador cargado justo a tiempo (JIT)
+    (req, res, next) => getController().createUser(req, res, next)
+);
 
 router.post(
     '/',
@@ -25,12 +32,21 @@ router.post(
         check('password', 'password must contain at least 6 characters').isLength({ min:6 }),
         fieldsValidator
     ],
-    loginUser);
+    // Usamos el controlador cargado justo a tiempo (JIT)
+    (req, res, next) => getController().loginUser(req, res, next)
+);
 
-router.get('/renew', validateJWT, renewToken);
+// CORRECCIÓN CLAVE: Aplicamos JIT a la ruta que FALLA
+router.get(
+    '/renew', 
+    validateJWT, 
+    (req, res, next) => getController().renewToken(req, res, next)
+);
 
-router.post('/google', googleSignIn)
+router.post(
+    '/google', 
+    (req, res, next) => getController().googleSignIn(req, res, next)
+);
 
 
 module.exports = router;
-
