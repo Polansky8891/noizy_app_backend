@@ -1,130 +1,119 @@
-const ListeningTick = require('../../models/ListeningTick'); // Asegura la ruta correcta
+// tests/models/ListeningTick.test.js
 const mongoose = require('mongoose');
-const { MongoMemoryServer } = require('mongodb-memory-server');
 
-// --- SETUP DE CONEXIÓN DE PRUEBA ---
-let mongoServer;
+describe('Model: ListeningTick', () => {
+  let ListeningTick;
 
-// Constantes de IDs válidos (String)
-const VALID_ID_STRING = '60a1234567890abcdef01234a'; 
-const MOCK_USER_ID = 'testUser123';
+  beforeAll(() => {
+    // evita OverwriteModelError si el runner recarga módulos
+    try { mongoose.deleteModel('ListeningTick'); } catch {}
+    ListeningTick = require('../../models/ListeningTick');
+  });
 
-// Conectar a la base de datos en memoria antes de todos los tests
-beforeAll(async () => {
-    // Para evitar BSONError durante la carga:
-    const originalObjectId = mongoose.Types.ObjectId;
-    mongoose.Types.ObjectId = function(v) { return v || '000000000000000000000000'; };
-    
-    mongoServer = await MongoMemoryServer.create();
-    const mongoUri = mongoServer.getUri();
-    await mongoose.connect(mongoUri);
-    
-    // Restauramos el constructor después de la conexión
-    mongoose.Types.ObjectId = originalObjectId; 
+  afterAll(() => {
+    try { mongoose.deleteModel('ListeningTick'); } catch {}
+  });
 
-    // Forzar la creación de índices al inicio
-    await ListeningTick.createIndexes(); 
-});
+  test('schema básico: tipos, required y versionKey off', () => {
+    const { schema } = ListeningTick;
 
-// Limpiar la colección y los mocks después de cada test
-beforeEach(async () => {
-    if (mongoose.connection.readyState === 1) {
-        await ListeningTick.deleteMany({});
-    }
-    jest.clearAllMocks();
-});
+    expect(schema.options.versionKey).toBe(false);
 
-// Desconectar Mongoose y detener el servidor de memoria después de todos los tests
-afterAll(async () => {
-    await mongoose.disconnect();
-    await mongoServer.stop();
-});
+    expect(schema.path('userId').instance).toBe('String');
+    expect(schema.path('trackId').instance).toBe('ObjectId'); // ojo: "ObjectId"
+    expect(schema.path('genre').instance).toBe('String');
+    expect(schema.path('ms').instance).toBe('Number');
+    expect(schema.path('at').instance).toBe('Date');
 
-// ----------------------------------------------------------------------
-// 1. TESTS DE VALIDACIÓN DE ESQUEMA
-// ----------------------------------------------------------------------
-describe('1. ListeningTick Model - Schema Validation', () => {
+    expect(schema.path('userId').isRequired).toBeTruthy();
+    expect(schema.path('trackId').isRequired).toBeTruthy();
+    expect(schema.path('ms').isRequired).toBeTruthy();
 
-    // 🔴 SKIP: Estos tests fallan por el BSONError síncrono al crear la instancia del modelo.
-    it.skip('1.1 Debe crear y guardar un documento con éxito (Validación básica)', async () => {
-        // La validación pasa al usar el string.
-        const tickData = {
-            userId: MOCK_USER_ID,
-            trackId: VALID_ID_STRING, 
-            ms: 30000,
-            genre: 'Pop',
-            at: new Date(),
-        };
-        const validTick = new ListeningTick(tickData);
-        
-        const savedTick = await validTick.save();
-        
-        expect(savedTick.userId).toBe(MOCK_USER_ID);
-        expect(savedTick.trackId.toString()).toBe(VALID_ID_STRING);
+    // límites en ms
+    const msPath = schema.path('ms');
+    expect(msPath.options.min).toBe(0);
+    expect(msPath.options.max).toBe(60000);
+  });
+
+  test('validación de ms (min/max) y required', () => {
+    // faltan obligatorios
+    let doc = new ListeningTick({});
+    let err = doc.validateSync();
+    expect(err.errors.userId).toBeTruthy();
+    expect(err.errors.trackId).toBeTruthy();
+    expect(err.errors.ms).toBeTruthy();
+
+    // ms < 0
+    doc = new ListeningTick({
+      userId: 'u1',
+      trackId: new mongoose.Types.ObjectId(),
+      ms: -1,
     });
+    err = doc.validateSync();
+    expect(err.errors.ms).toBeTruthy();
 
-    it('1.2 Debe fallar si falta el campo userId (required)', async () => {
-        const tickData = { trackId: VALID_ID_STRING, ms: 10000, userId: undefined }; 
-        const invalidTick = new ListeningTick(tickData);
-
-        await expect(invalidTick.save()).rejects.toThrow(/userId.*is required/);
+    // ms > 60000
+    doc = new ListeningTick({
+      userId: 'u1',
+      trackId: new mongoose.Types.ObjectId(),
+      ms: 60001,
     });
-    
-    it('1.3 Debe fallar si falta el campo trackId (required)', async () => {
-        const tickData = { userId: MOCK_USER_ID, ms: 10000, trackId: undefined };
-        const invalidTick = new ListeningTick(tickData);
+    err = doc.validateSync();
+    expect(err.errors.ms).toBeTruthy();
 
-        await expect(invalidTick.save()).rejects.toThrow(/trackId.*is required/);
+    // límites válidos: 0 y 60000
+    doc = new ListeningTick({
+      userId: 'u1',
+      trackId: new mongoose.Types.ObjectId(),
+      ms: 0,
     });
-    
-    it('1.4 Debe fallar si el campo ms excede el máximo (60000)', async () => {
-        const tickData = { 
-            userId: MOCK_USER_ID, 
-            trackId: VALID_ID_STRING, 
-            ms: 60001 
-        };
-        const invalidTick = new ListeningTick(tickData);
+    err = doc.validateSync();
+    expect(err).toBeUndefined();
 
-        await expect(invalidTick.save()).rejects.toThrow(/more than maximum allowed value/);
+    doc = new ListeningTick({
+      userId: 'u1',
+      trackId: new mongoose.Types.ObjectId(),
+      ms: 60000,
     });
-    
-    // 🔴 SKIP: Este test falla por el BSONError síncrono en la construcción.
-    it.skip('1.5 Debe usar Date.now() por defecto para el campo at', async () => {
-        const tickData = {
-            userId: MOCK_USER_ID,
-            trackId: VALID_ID_STRING,
-            ms: 30000,
-        };
-        const newTick = new ListeningTick(tickData);
-        
-        await newTick.save();
-        
-        expect(newTick.at).toBeDefined();
-        expect(newTick.at).toBeInstanceOf(Date);
+    err = doc.validateSync();
+    expect(err).toBeUndefined();
+  });
+
+  test('default de at usa Date.now (ventana temporal)', () => {
+    const before = Date.now();
+    const doc = new ListeningTick({
+      userId: 'u1',
+      trackId: new mongoose.Types.ObjectId('507f1f77bcf86cd799439011'),
+      ms: 1234,
+      // sin "at" → usa default
     });
-});
+    const after = Date.now();
 
-// ----------------------------------------------------------------------
-// 2. TESTS DE ÍNDICES
-// ----------------------------------------------------------------------
-describe('2. ListeningTick Model - Index Validation', () => {
+    expect(doc.at).toBeInstanceOf(Date);
+    expect(doc.at.getTime()).toBeGreaterThanOrEqual(before);
+    expect(doc.at.getTime()).toBeLessThanOrEqual(after);
+  });
 
-    // 🔴 SKIP: Este test falla porque los índices no son visibles en el array de Received.
-    it.skip('2.1 Debe tener los índices compuestos definidos correctamente', async () => {
-        // Obtenemos los índices creados.
-        const indexList = await ListeningTick.collection.getIndexes();
-        
-        // Aseguramos que indexList es un Array para poder usar map
-        const indexKeys = Array.from(indexList).map(idx => JSON.stringify(idx.key));
-        
-        // Verificar el índice compuesto { userId: 1, at: -1 }
-        expect(indexKeys).toContain(JSON.stringify({ userId: 1, at: -1 }));
+  test('índices: campos e índices compuestos', () => {
+    const indexes = ListeningTick.schema.indexes(); // [ [fields, options], ... ]
 
-        // Verificar el índice compuesto { userId: 1, trackId: 1, at: -1 }
-        expect(indexKeys).toContain(JSON.stringify({ userId: 1, trackId: 1, at: -1 }));
-        
-        // Verificar que los índices simples (trackId, genre) estén presentes
-        expect(indexKeys).toContain(JSON.stringify({ trackId: 1 }));
-        expect(indexKeys).toContain(JSON.stringify({ genre: 1 }));
-    });
+    const hasIndex = (shape) =>
+      indexes.some(([fields]) => {
+        const keys = Object.keys(shape);
+        return (
+          keys.length === Object.keys(fields).length &&
+          keys.every((k) => fields[k] === shape[k])
+        );
+      });
+
+    // índices por "index: true" en campos
+    expect(hasIndex({ userId: 1 })).toBe(true);
+    expect(hasIndex({ trackId: 1 })).toBe(true);
+    expect(hasIndex({ genre: 1 })).toBe(true);
+    expect(hasIndex({ at: 1 })).toBe(true);
+
+    // índices compuestos definidos en el schema
+    expect(hasIndex({ userId: 1, at: -1 })).toBe(true);
+    expect(hasIndex({ userId: 1, trackId: 1, at: -1 })).toBe(true);
+  });
 });

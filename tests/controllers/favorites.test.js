@@ -1,108 +1,221 @@
+// tests/controllers/favorites.test.js
 const mongoose = require('mongoose');
 
-// CORRECCIÓN CLAVE DEL BSONError: Sobrescribir el constructor de ObjectId (para evitar fallos en la carga)
-mongoose.Types.ObjectId = function(v) { return v; }; 
-
-// Definiciones de MOCKS (Necesarias para la carga del módulo)
-const asIdMock = jest.fn((v) => v); 
-const mockFunctions = {
-    getFavorites: jest.fn(),
-    addFavorite: jest.fn(),
-    removeFavorite: jest.fn(),
-    asId: asIdMock, 
-};
-jest.mock('../../controllers/favorites', () => (mockFunctions));
-const { getFavorites, addFavorite, removeFavorite, asId } = mockFunctions; 
-
-const mockQuery = {
-  select: jest.fn().mockReturnThis(), 
-  lean: jest.fn().mockReturnThis(), 
-  exec: jest.fn(), 
-  find: jest.fn().mockReturnThis(),
-  findOneAndUpdate: jest.fn().mockReturnThis(),
-};
+// ── Define los mocks **dentro** del factory (inline) ──
 jest.mock('../../models/User', () => ({
-    findOne: jest.fn(() => mockQuery),
-    findOneAndUpdate: jest.fn(() => mockQuery),
+  findOne: jest.fn(),
+  findOneAndUpdate: jest.fn(),
 }));
 jest.mock('../../models/Track', () => ({
-    find: jest.fn(() => mockQuery),
+  find: jest.fn(),
 }));
 
-// --- DATOS Y UTILS ---
-const MOCK_UID = 'mockFirebaseUid-123';
-const TRACK_ID_A = '60a1234567890abcdef01234a';
-const TRACK_ID_B = '60a1234567890abcdef01234b';
-const NEW_TRACK_ID = '60c9876543210fedcba98765';
-const mockFavoritesString = [TRACK_ID_A, TRACK_ID_B];
-const mockUserWithFavorites = { favorites: mockFavoritesString };
-const mockTracksData = [{ _id: TRACK_ID_A, name: 'Track A' }, { _id: TRACK_ID_B, name: 'Track B' }];
-const mockRes = () => ({ json: jest.fn((result) => result), status: jest.fn().mockReturnThis() });
-mongoose.isValidObjectId = jest.fn((id) => { return id && id.length > 10 && id !== 'invalid-id-test'; });
+// Ahora sí, importa los mocks para poder configurarlos en los tests
+const UserMock = require('../../models/User');
+const TrackMock = require('../../models/Track');
 
-// --- SETUP COMÚN ---
+// Importa el controller DESPUÉS de los jest.mock
+const favorites = require('../../controllers/favorites');
+
+// Helper res (Express-like)
+const makeRes = () => {
+  const res = {};
+  res.status = jest.fn(() => res);
+  res.json = jest.fn((body) => { res._json = body; return res; });
+  return res;
+};
+
 beforeEach(() => {
   jest.clearAllMocks();
-  mockQuery.exec.mockReset(); 
-  asId.mockImplementation((v) => v);
+  jest.spyOn(mongoose, 'isValidObjectId').mockImplementation(() => true);
 });
 
+afterAll(() => {
+  jest.restoreAllMocks();
+});
 
-// ===================================
-// CONTROLADOR DE FAVORITOS (¡SE IGNORA TODO EL BLOQUE!)
-// ===================================
-describe.skip('Favorites Controller (Verified Logic, Skipping Environment Conflict)', () => {
+describe('favorites.getFavorites', () => {
+  it('401 si falta uid', async () => {
+    const req = { uid: '' };
+    const res = makeRes();
 
-  // --- TESTS PARA getFavorites ---
-  describe('getFavorites', () => {
-    let res;
-    beforeEach(() => { res = mockRes(); });
+    await favorites.getFavorites(req, res);
 
-    it('1.1 Debe retornar 401 si req.uid no está presente (No Autorizado)', async () => {
-      await getFavorites({ uid: '' }, res);
-      expect(res.status).toHaveBeenCalledWith(401);
-    });
-
-    it('1.3 Debe retornar la lista de favoritos y sus detalles', async () => {
-      mockQuery.exec.mockResolvedValueOnce(mockUserWithFavorites); 
-      mockQuery.exec.mockResolvedValueOnce(mockTracksData);
-      await getFavorites({ uid: MOCK_UID }, res);
-      expect(asId).toHaveBeenCalledTimes(mockFavoritesString.length);
-    });
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res._json).toEqual({ ok:false, msg:'unauthorized' });
   });
 
-  // --- TESTS PARA addFavorite ---
-  describe('addFavorite', () => {
-    let res;
-    beforeEach(() => { res = mockRes(); });
-
-    it('2.3 Debe agregar el trackId y retornar la lista actualizada', async () => {
-      const updatedFavorites = [...mockFavoritesString, NEW_TRACK_ID];
-      mockQuery.exec.mockResolvedValueOnce({ favorites: updatedFavorites });
-      const req = { uid: MOCK_UID, body: { trackId: NEW_TRACK_ID } };
-      await addFavorite(req, res);
-      expect(asId).toHaveBeenCalledWith(NEW_TRACK_ID);
+  it('ok con lista vacía', async () => {
+    UserMock.findOne.mockReturnValue({
+      select: jest.fn().mockReturnThis(),
+      lean: jest.fn().mockResolvedValue({ favorites: [] }),
     });
 
-    it('2.4 Debe retornar 500 si ocurre un error en la base de datos', async () => {
-      mockQuery.exec.mockRejectedValueOnce(new Error('DB Error Test'));
-      const req = { uid: MOCK_UID, body: { trackId: NEW_TRACK_ID } };
-      await addFavorite(req, res);
-      expect(res.status).toHaveBeenCalledWith(500);
-    });
+    const req = { uid: 'firebase-uid-1' };
+    const res = makeRes();
+
+    await favorites.getFavorites(req, res);
+
+    expect(UserMock.findOne).toHaveBeenCalledWith({ firebaseUid: 'firebase-uid-1' });
+    expect(TrackMock.find).not.toHaveBeenCalled();
+    expect(res._json).toEqual({ ok:true, favoritesIds: [], items: [] });
   });
 
-  // --- TESTS PARA removeFavorite ---
-  describe('removeFavorite', () => {
-    let res;
-    beforeEach(() => { res = mockRes(); });
+  it('ok con ids + items', async () => {
+    const id1 = '507f1f77bcf86cd799439011';
+    const id2 = '507f1f77bcf86cd799439012';
 
-    it('3.3 Debe remover el trackId y retornar la lista actualizada', async () => {
-      const remainingFavorites = [TRACK_ID_B]; 
-      mockQuery.exec.mockResolvedValueOnce({ favorites: remainingFavorites });
-      const req = { uid: MOCK_UID, params: { trackId: TRACK_ID_A } };
-      await removeFavorite(req, res);
-      expect(asId).toHaveBeenCalledWith(TRACK_ID_A);
+    UserMock.findOne.mockReturnValue({
+      select: jest.fn().mockReturnThis(),
+      lean: jest.fn().mockResolvedValue({
+        favorites: [new mongoose.Types.ObjectId(id1), new mongoose.Types.ObjectId(id2)],
+      }),
     });
+
+    const items = [{ _id: id1, title: 'Song 1' }, { _id: id2, title: 'Song 2' }];
+    TrackMock.find.mockReturnValue({
+      lean: jest.fn().mockResolvedValue(items),
+    });
+
+    const req = { uid: 'abc' };
+    const res = makeRes();
+
+    await favorites.getFavorites(req, res);
+
+    expect(TrackMock.find).toHaveBeenCalled();
+    expect(res._json).toEqual({ ok:true, favoritesIds: [id1, id2], items });
+  });
+
+  it('500 en excepción', async () => {
+    UserMock.findOne.mockReturnValue({
+      select: jest.fn().mockReturnThis(),
+      lean: jest.fn().mockRejectedValue(new Error('db down')),
+    });
+
+    const req = { uid: 'x' };
+    const res = makeRes();
+
+    await favorites.getFavorites(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res._json).toEqual({ ok:false, msg:'Server error' });
+  });
+});
+
+describe('favorites.addFavorite', () => {
+  it('401 si falta uid', async () => {
+    const req = { uid: '', body: { trackId: '507f1f77bcf86cd799439011' } };
+    const res = makeRes();
+
+    await favorites.addFavorite(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res._json).toEqual({ ok:false, msg:'unauthorized' });
+  });
+
+  it('400 si trackId inválido', async () => {
+    mongoose.isValidObjectId.mockReturnValue(false);
+
+    const req = { uid: 'abc', body: { trackId: 'bad' } };
+    const res = makeRes();
+
+    await favorites.addFavorite(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res._json).toEqual({ ok:false, msg:'invalid trackId' });
+  });
+
+  it('ok upsert y devuelve ids', async () => {
+    const id = '507f1f77bcf86cd799439011';
+
+    UserMock.findOneAndUpdate.mockReturnValue({
+      lean: jest.fn().mockResolvedValue({
+        firebaseUid: 'abc',
+        favorites: [new mongoose.Types.ObjectId(id)],
+      }),
+    });
+
+    const req = { uid: 'abc', body: { trackId: id } };
+    const res = makeRes();
+
+    await favorites.addFavorite(req, res);
+
+    expect(UserMock.findOneAndUpdate).toHaveBeenCalled();
+    expect(res._json).toEqual({ ok:true, added:true, trackId: id, favoritesIds: [id] });
+  });
+
+  it('500 en fallo BD', async () => {
+    const id = '507f1f77bcf86cd799439011';
+
+    UserMock.findOneAndUpdate.mockReturnValue({
+      lean: jest.fn().mockRejectedValue(new Error('db fail')),
+    });
+
+    const req = { uid: 'abc', body: { trackId: id } };
+    const res = makeRes();
+
+    await favorites.addFavorite(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res._json).toEqual({ ok:false, msg:'Server error' });
+  });
+});
+
+describe('favorites.removeFavorite', () => {
+  it('401 si falta uid', async () => {
+    const req = { uid: '', params: { trackId: '507f1f77bcf86cd799439011' } };
+    const res = makeRes();
+
+    await favorites.removeFavorite(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res._json).toEqual({ ok:false, msg:'unauthorized' });
+  });
+
+  it('400 si trackId inválido', async () => {
+    mongoose.isValidObjectId.mockReturnValue(false);
+
+    const req = { uid: 'abc', params: { trackId: 'bad' } };
+    const res = makeRes();
+
+    await favorites.removeFavorite(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res._json).toEqual({ ok:false, msg:'invalid trackId' });
+  });
+
+  it('ok elimina y devuelve ids', async () => {
+    const id = '507f1f77bcf86cd799439011';
+
+    UserMock.findOneAndUpdate.mockReturnValue({
+      lean: jest.fn().mockResolvedValue({
+        firebaseUid: 'abc',
+        favorites: [],
+      }),
+    });
+
+    const req = { uid: 'abc', params: { trackId: id } };
+    const res = makeRes();
+
+    await favorites.removeFavorite(req, res);
+
+    expect(UserMock.findOneAndUpdate).toHaveBeenCalled();
+    expect(res._json).toEqual({ ok:true, removed:true, trackId: id, favoritesIds: [] });
+  });
+
+  it('500 en fallo BD', async () => {
+    const id = '507f1f77bcf86cd799439011';
+
+    UserMock.findOneAndUpdate.mockReturnValue({
+      lean: jest.fn().mockRejectedValue(new Error('db fail')),
+    });
+
+    const req = { uid: 'abc', params: { trackId: id } };
+    const res = makeRes();
+
+    await favorites.removeFavorite(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res._json).toEqual({ ok:false, msg:'Server error' });
   });
 });

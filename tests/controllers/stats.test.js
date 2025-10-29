@@ -1,56 +1,74 @@
+// tests/controllers/stats.test.js
 const mongoose = require('mongoose');
 
-// CORRECCIÓN DE RUTAS
-const { summary, tick } = require('../../controllers/stats.js'); 
+// Controllers a probar
+const { summary, tick } = require('../../controllers/stats.js');
 
-// Importar los Mocks de Modelos
+// ─────────────────────────── Mocks de modelos (inline factories) ───────────────────────────
+jest.mock('../../models/ListeningTick', () => ({
+  aggregate: jest.fn(),
+  insertMany: jest.fn(),
+}));
+jest.mock('../../models/PlayEvent', () => ({
+  aggregate: jest.fn(),
+}));
+jest.mock('../../models/Track', () => {
+  // Mock encadenable: find() -> { select() -> this, lean() -> Promise }
+  const select = jest.fn().mockReturnThis();
+  const lean = jest.fn().mockResolvedValue([]); // default vacío
+  const find = jest.fn(() => ({ select, lean }));
+  return {
+    find,
+    __select: select, // por si quieres inspeccionar en asserts
+    __lean: lean,
+    collection: { name: 'tracks' },
+  };
+});
+
+// Recupera referencias de los mocks para configurarlos en cada test
 const ListeningTick = require('../../models/ListeningTick');
 const PlayEvent = require('../../models/PlayEvent');
 const Track = require('../../models/Track');
 
-// --- SETUP DE MOCKING ---
-
-// Mock de Mongoose
-jest.mock('../../models/ListeningTick', () => ({ aggregate: jest.fn(), insertMany: jest.fn(), }));
-jest.mock('../../models/PlayEvent', () => ({ aggregate: jest.fn(), }));
-jest.mock('../../models/Track', () => ({ find: jest.fn(), collection: { name: 'tracks' }, }));
-
-// Configuración de Promesas y Mocks
-Track.find.mockReturnThis();
-Track.find.lean = jest.fn().mockResolvedValue([]);
-ListeningTick.insertMany = jest.fn().mockResolvedValue({});
-mongoose.Types.ObjectId = jest.fn((v) => v);
-
-// Simulamos la validación de ObjectId (Sin implementación inicial en global)
-mongoose.isValidObjectId = jest.fn();
-
-// Mockear Date.now()
+// ─────────────────────────── Utilidades comunes ───────────────────────────
 const MOCK_TIME = new Date('2025-10-27T10:00:00.000Z').getTime();
-global.Date.now = jest.fn(() => MOCK_TIME);
-
-// Objetos comunes
 const MOCK_UID = 'testFirebaseUid1234567890';
+
 const mockRes = () => ({
   json: jest.fn(),
-  status: jest.fn().mockReturnThis(),
-  sendStatus: jest.fn(),
+  status: jest.fn(function (code) { this._status = code; return this; }),
+  sendStatus: jest.fn(function (code) { this._status = code; return this; }),
+});
+
+beforeAll(() => {
+  // Mock estable de Date.now
+  jest.spyOn(Date, 'now').mockReturnValue(MOCK_TIME);
+});
+
+afterAll(() => {
+  jest.restoreAllMocks();
 });
 
 beforeEach(() => {
   jest.clearAllMocks();
-  Track.find.lean.mockResolvedValue([]);
-  ListeningTick.aggregate.mockClear();
-  PlayEvent.aggregate.mockClear();
-  ListeningTick.insertMany.mockClear().mockResolvedValue({});
 
-  // **CORRECCIÓN CLAVE:** Limpiamos la implementación para que cada test la defina
-  mongoose.isValidObjectId.mockImplementation(jest.fn());
-  
-  // Mocks de aggregate base
-  ListeningTick.aggregate.mockImplementation(() => Promise.resolve([]));
-  PlayEvent.aggregate.mockImplementation(() => Promise.resolve([]));
+  // Defaults seguros para los modelos
+  ListeningTick.aggregate.mockResolvedValue([]);
+  ListeningTick.insertMany.mockResolvedValue({});
+  PlayEvent.aggregate.mockResolvedValue([]);
+
+  // Track.find por defecto devuelve un objeto encadenable con lean() => []
+  Track.find.mockReturnValue({
+    select: jest.fn().mockReturnThis(),
+    lean: jest.fn().mockResolvedValue([]),
+  });
+
+  // ObjectId helpers seguros para tests (no dependemos de Mongoose real)
+  mongoose.Types.ObjectId = jest.fn((v) => v);
+
+  // Cada test define su validación según necesite
+  jest.spyOn(mongoose, 'isValidObjectId').mockImplementation(() => true);
 });
-
 
 // ===================================
 // 1. TESTS PARA summary (Agregación)
@@ -80,31 +98,45 @@ describe('Stats Controller - summary', () => {
     await summary(reqBase, res);
 
     expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ minutes: 0, plays: 0, uniqueTracks: 0, topGenres: [], })
+      expect.objectContaining({
+        minutes: 0,
+        plays: 0,
+        uniqueTracks: 0,
+        topGenres: [],
+      })
     );
   });
 
   it('1.4 Debe retornar datos correctos y calculados (Minutos, Plays y Géneros)', async () => {
-    const dailyData = [{ _id: '2025-10-25', ms: 60000 }, { _id: '2025-10-26', ms: 120000 }];
+    const dailyData = [
+      { _id: '2025-10-25', ms: 60000 },
+      { _id: '2025-10-26', ms: 120000 },
+    ];
     const playsAggData = [{ plays: 10, uniqueTracks: 5 }];
     const topGenresExpected = [
-        { genre: 'Rock', ms: 100000 },
-        { genre: 'Pop', ms: 50000 },
+      { genre: 'Rock', ms: 100000 },
+      { genre: 'Pop', ms: 50000 },
     ];
-    
-    ListeningTick.aggregate.mockResolvedValueOnce(dailyData);
-    PlayEvent.aggregate.mockResolvedValueOnce(playsAggData);
-    ListeningTick.aggregate.mockResolvedValueOnce(topGenresExpected);
+
+    // El controller probablemente hace 3 agregaciones: daily, plays, topGenres
+    ListeningTick.aggregate
+      .mockResolvedValueOnce(dailyData)        // daily
+      .mockResolvedValueOnce(topGenresExpected); // topGenres (si va después)
+
+    PlayEvent.aggregate.mockResolvedValueOnce(playsAggData); // plays + unique
 
     await summary(reqBase, res);
 
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        minutes: 3,
+        minutes: 3, // 180000 ms -> 3 min
         plays: 10,
         uniqueTracks: 5,
         topGenres: topGenresExpected,
-        daily: [{ date: '2025-10-25', ms: 60000 }, { date: '2025-10-26', ms: 120000 }],
+        daily: [
+          { date: '2025-10-25', ms: 60000 },
+          { date: '2025-10-26', ms: 120000 },
+        ],
       })
     );
   });
@@ -135,13 +167,14 @@ describe('Stats Controller - tick', () => {
   });
 
   it('2.3 Debe retornar 400 si ningún tick pasa la validación', async () => {
-    // Implementación específica SÓLO para este test de fallo (para no contaminar 2.4/2.5)
+    // Solo este ID es válido
     mongoose.isValidObjectId.mockImplementation((id) => id === validTrackId);
-    
+
     const invalidTicks = [
-      { trackId: 'shortId', ms: 55000 }, 
-      { trackId: validTrackId, ms: 4999 }, 
+      { trackId: 'shortId', ms: 55000 }, // id inválido
+      { trackId: validTrackId, ms: 4999 }, // ms < 5000
     ];
+
     await tick({ uid: MOCK_UID, body: { ticks: invalidTicks } }, res);
 
     expect(ListeningTick.insertMany).not.toHaveBeenCalled();
@@ -150,39 +183,46 @@ describe('Stats Controller - tick', () => {
   });
 
   it('2.4 Debe insertar ticks válidos sin fallback y devolver saved: N', async () => {
-    // Implementación específica para este test de éxito
     mongoose.isValidObjectId.mockImplementation((id) => id === validTrackId);
-    
-    const validTicks = [{
-      trackId: validTrackId,
-      ms: 55000,
-      genre: 'Pop',
-      at: '2025-10-27T09:30:00.000Z',
-    }];
+
+    const validTicks = [
+      {
+        trackId: validTrackId,
+        ms: 55000,
+        genre: 'Pop',
+        at: '2025-10-27T09:30:00.000Z',
+      },
+    ];
 
     await tick({ uid: MOCK_UID, body: { ticks: validTicks } }, res);
 
-    expect(Track.find).not.toHaveBeenCalled(); // No se necesita fallback
-    expect(ListeningTick.insertMany).toHaveBeenCalledTimes(1); 
+    expect(Track.find).not.toHaveBeenCalled(); // no hace falta fallback
+    expect(ListeningTick.insertMany).toHaveBeenCalledTimes(1);
     expect(res.json).toHaveBeenCalledWith({ ok: true, saved: 1 });
   });
 
   it('2.5 Debe usar Track fallback si el género está ausente o es "unknown"', async () => {
-    // Implementación específica para este test de éxito (validar ambos IDs)
-    mongoose.isValidObjectId.mockImplementation((id) => id === validTrackId || id === trackIdNeedsFallback);
-    
+    // Ambos IDs válidos
+    mongoose.isValidObjectId.mockImplementation(
+      (id) => id === validTrackId || id === trackIdNeedsFallback
+    );
+
     const ticks = [
       { trackId: validTrackId, ms: 10000, genre: 'unknown' },
       { trackId: trackIdNeedsFallback, ms: 15000, genre: null },
     ];
-    
-    // Mockear que Track.find encuentra los géneros
-    Track.find.lean.mockResolvedValueOnce([
-      { _id: validTrackId, genre: 'Rock' },
-      { _id: trackIdNeedsFallback, genre: 'Jazz' },
-    ]);
 
-    await tick({ uid: MOCK_UID, body: { ticks: ticks } }, res);
+    // El controller hará algo como: Track.find({ _id: { $in: [...] } }).select('genre').lean()
+    // Devolvemos los géneros para fallback
+    Track.find.mockReturnValueOnce({
+      select: jest.fn().mockReturnThis(),
+      lean: jest.fn().mockResolvedValue([
+        { _id: validTrackId, genre: 'Rock' },
+        { _id: trackIdNeedsFallback, genre: 'Jazz' },
+      ]),
+    });
+
+    await tick({ uid: MOCK_UID, body: { ticks } }, res);
 
     expect(ListeningTick.insertMany).toHaveBeenCalledTimes(1);
     expect(res.json).toHaveBeenCalledWith({ ok: true, saved: 2 });
